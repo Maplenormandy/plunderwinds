@@ -58,7 +58,7 @@ module.exports = function (grunt) {
         files: [
           // includes files within path and its sub-directories
           { expand: true, src: ['assets/**'], dest: 'dist/' },
-          { expand: true, flatten: true, src: ['game/plugins/*.js'], dest: 'dist/js/plugins/' },
+          // { expand: true, flatten: true, src: ['game/plugins/*.js'], dest: 'dist/js/plugins/' },
           { expand: true, flatten: true, src: ['bower_components/**/build/*.js'], dest: 'dist/js/' },
           { expand: true, src: ['css/**'], dest: 'dist/' },
           { expand: true, src: ['index.html'], dest: 'dist/' }
@@ -73,25 +73,8 @@ module.exports = function (grunt) {
     }
   });
   
-  grunt.registerTask('build', ['buildBootstrapper', 'browserify','copy']);
+  grunt.registerTask('build', ['browserify','copy']);
   grunt.registerTask('serve', ['build', 'connect:livereload', 'open', 'watch']);
   grunt.registerTask('default', ['serve']);
   grunt.registerTask('prod', ['build', 'copy']);
-
-  grunt.registerTask('buildBootstrapper', 'builds the bootstrapper file correctly', function() {
-    var stateFiles = grunt.file.expand('game/states/*.js');
-    var gameStates = [];
-    var statePattern = new RegExp(/(\w+).js$/);
-    stateFiles.forEach(function(file) {
-      var state = file.match(statePattern)[1];
-      if (!!state) {
-        gameStates.push({shortName: state, stateName: _.capitalize(state) + 'State'});
-      }
-    });
-    config.gameStates = gameStates;
-    console.log(config);
-    var bootstrapper = grunt.file.read('templates/_main.js.tpl');
-    bootstrapper = grunt.template.process(bootstrapper,{data: config});
-    grunt.file.write('game/main.js', bootstrapper);
-  });
 };
