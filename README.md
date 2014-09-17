@@ -10,18 +10,11 @@ Installing and Running
 
 First off, you need to install node and npm. There are a lot of tutorials on how to do that online so it's assumed you have the latest version up and running.
 
-Next, install Yeoman (a javascript framework) and [generator-phaser-official](https://github.com/codevinsky/generator-phaser-official/blob/master/README.md):
-
-```
-npm install -g yo
-npm install -g generator-phaser-official
-```
-
 Then, go to the root directory of the plunderwinds repository and run
 
 ```
-bower install
 npm install
+bower install
 ```
 
 Now, everything is set up and ready to run. To run, all you have to do is
