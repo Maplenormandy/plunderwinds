@@ -10,10 +10,12 @@ Installing and Running
 
 First off, you need to install node and npm. There are a lot of tutorials on how to do that online so it's assumed you have the latest version up and running.
 
-Then, go to the root directory of the plunderwinds repository and run
+Then, go to the root directory of the plunderwinds repository and run the following commands. Depending on your system, you might need to run `npm install -g *` commands using sudo/admin.
 
 ```
 npm install
+npm install -g bower
+npm install -g grunt-cli
 bower install
 ```
 
