@@ -9,7 +9,7 @@ function Menu() {}
 
 Menu.prototype = {
   preload: function() {
-
+    
   },
   create: function() {
     // This is boilerplate code.
