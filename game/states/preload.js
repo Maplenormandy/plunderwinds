@@ -5,6 +5,8 @@
  *
  * @constructor
  */
+
+
 function Preload() {
   this.asset = null;
   this.ready = false;
@@ -18,6 +20,15 @@ Preload.prototype = {
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
     this.load.setPreloadSprite(this.asset);
     this.load.image('yeoman', 'assets/yeoman-logo.png');
+    this.load.image('compass', 'assets/compasswhite.png');
+    /**
+      loads the fonts
+    */
+    WebFont.load({
+      google: {
+        families: ['Meddon', 'IM Fell English SC']
+      }
+    })
 
   },
   create: function() {
