@@ -14,6 +14,7 @@ var Sprite = require('./sprite');
 function Tile(game, grid, x, y, key) {
   this.game = game;
   this.grid = grid;
+
   Sprite.call(this, game, x, y, key);
   this.phSprite.crop(new Phaser.Rectangle(0, 0, 100, 100), true);
   this.phSprite.inputEnabled = true;
@@ -28,17 +29,27 @@ function Tile(game, grid, x, y, key) {
   this.danger = Math.floor((Math.random() * 8) + 1);
 }
 
-//inherit from Sprite
+// inherit from Sprite
 Tile.prototype = new Sprite();
 Tile.prototype.constructor = Tile;
 
 Tile.prototype.onClick = function() {
-  var angle = Math.atan2(this.game.input.y - this.grid.ship.phSprite.y,
-                         this.game.input.x - this.grid.ship.phSprite.x);
-  var dir = Math.ceil((angle - Math.PI/4) / (Math.PI/2))+1;
+  // where is this tile relative to the player? only adjacent tiles count.
+  var gridPos = this.grid.getTileCoords(this.phSprite.x, this.phSprite.y); 
+  var dx = gridPos.x - this.grid.ship.gridX;
+  var dy = gridPos.y - this.grid.ship.gridY;
+  var dir = null;
 
-  // TODO: it would be nice to have a "game.updateState()" function to handle
-  // moving things forward for us.
+  // figure out which direction (if any) to move.
+  if (dx == 0 && dy == 1)
+    dir = this.grid.DOWN;
+  else if (dx == 0 && dy == -1)
+    dir = this.grid.UP;
+  else if (dx == 1 && dy == 0)
+    dir = this.grid.RIGHT;
+  else if (dx == -1 && dy == 0)
+    dir = this.grid.LEFT;
+
   this.grid.ship.moveTo(dir);
   this.game.sidePanel.update();
 };

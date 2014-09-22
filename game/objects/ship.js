@@ -34,6 +34,7 @@ function Ship(game, grid) {
 Ship.prototype = new Sprite();
 Ship.prototype.constructor = Ship;
 
+
 /**
  * Returns the directions in which the ship can move 
  *
@@ -44,32 +45,32 @@ Ship.prototype.canMove = function() {
   if (this.game.stamina <= 0)
     return [false, false, false, false];
   return [
-    this.gridY>0, 
-    this.gridX<this.grid.spritesX-1, 
-    this.gridY<this.grid.spritesX-1, 
-    this.gridX>0
+    this.gridY > 0, 
+    this.gridX < this.grid.spritesX-1, 
+    this.gridY < this.grid.spritesX-1, 
+    this.gridX > 0
   ];
 };
 
 /**
  * Moves the ship one cell in the specified direction 
  *
- * @param {Int} dir - 0 - up, 1 - right, 2 - down, 3 - left
+ * @param {Int} dir - 0 = up, 1 = right, 2 = down, 3 = left
  * @param {Boolean} [anim] - should be animated
  */
 
 Ship.prototype.moveTo = function(dir, anim) {
-  if (dir < 0 || dir > 4) { return; }
+  if (dir < 0 || dir > 4 || dir == null) { return; }
   if (typeof anim === 'undefined') { anim = true; }
 
   if (!this.canMove()[dir]) { return; }
 
   var step;
   switch (dir) {
-    case 0: step = [0, -1]; break;
-    case 1: step = [1, 0]; break;
-    case 2: step = [0, 1]; break;
-    case 3: step = [-1, 0]; break;
+    case this.grid.UP: step = [0, -1]; break;
+    case this.grid.RIGHT: step = [1, 0]; break;
+    case this.grid.DOWN: step = [0, 1]; break;
+    case this.grid.LEFT: step = [-1, 0]; break;
   }
 
   this.gridX += step[0];
@@ -100,17 +101,10 @@ Ship.prototype.moveTo = function(dir, anim) {
  */
 
 Ship.prototype.absPos = function() {
-  return [(this.gridX + 0.5) * this.grid.spriteX, (this.gridY + 0.5) * this.grid.spriteX];
-};
-
-/**
- * Returns the directions in which the ship can move 
- *
- * @param {Boolean|Array} [(can move up), (right), (down), (left)] 
- */
- 
-Ship.prototype.canMove = function() {
-  return [this.gridY>0, this.gridX<this.grid.spritesX-1, this.gridY<this.grid.spritesX-1, this.gridX>0];
+  return [
+    (this.gridX + 0.5) * this.grid.spriteSize, 
+    (this.gridY + 0.5) * this.grid.spriteSize
+  ];
 };
 
 module.exports = Ship;
