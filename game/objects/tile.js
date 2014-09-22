@@ -12,6 +12,7 @@ var Sprite = require('./sprite');
  */
 
 function Tile(game, grid, x, y, key) {
+  this.game = game;
   this.grid = grid;
   Sprite.call(this, game, x, y, key);
   this.phSprite.crop(new Phaser.Rectangle(0, 0, 100, 100), true);
@@ -32,9 +33,14 @@ Tile.prototype = new Sprite();
 Tile.prototype.constructor = Tile;
 
 Tile.prototype.onClick = function() {
-  var angle = Math.atan2(this.game.input.y - this.grid.ship.phSprite.y, this.game.input.x - this.grid.ship.phSprite.x);
+  var angle = Math.atan2(this.game.input.y - this.grid.ship.phSprite.y,
+                         this.game.input.x - this.grid.ship.phSprite.x);
   var dir = Math.ceil((angle - Math.PI/4) / (Math.PI/2))+1;
+
+  // TODO: it would be nice to have a "game.updateState()" function to handle
+  // moving things forward for us.
   this.grid.ship.moveTo(dir);
+  this.game.sidePanel.update();
 };
 
 Tile.prototype.showDanger = function() {
