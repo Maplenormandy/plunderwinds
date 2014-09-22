@@ -78,6 +78,8 @@ Ship.prototype.moveTo = function(dir, anim) {
     this.phSprite.x = absPos[0];
     this.phSprite.y = absPos[1];
   }
+
+  this.grid.updateFog();
 };
 
 /**

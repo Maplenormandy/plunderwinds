@@ -11,13 +11,13 @@
  */
 
 function Sprite(game, x, y, key) {
-  x = (typeof x === 'undefined') ? 0 : x;
-  y = (typeof y === 'undefined') ? 0 : y;
+  this.x = (typeof x === 'undefined') ? 0 : x;
+  this.y = (typeof y === 'undefined') ? 0 : y;
   this.game = game;
   if (typeof game === 'undefined') {
     return;
   }
-  this.phSprite = game.add.sprite(x, y, key);
+  this.phSprite = game.add.sprite(this.x, this.y, key);
   this.phSprite.anchor.setTo(0.5, 0.5);
 }
 
