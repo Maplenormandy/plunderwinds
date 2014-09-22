@@ -1,4 +1,5 @@
 'use strict';
+var Compass = require('./compass');
 /**
 	@author: Tricia
 	@constructor
@@ -6,11 +7,15 @@
 */
 
 function Sidepanel(game){
+
+	//reference to the game
+	this.game = game;
+
 	/**
 		places the compass
+		200x200
 	*/
-	this.compass = game.add.sprite(600, 400, 'compass');
-	this.compass.scale.setTo(0.4, 0.4);
+	this.compass = new Compass(game, 700, 500);
 
 	/**
 		places stamina bar, default 20 stamina

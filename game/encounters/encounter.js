@@ -10,6 +10,7 @@
  */
 function Encounter() {
   this.effectResults = new Array(9);
+  this.titleText = 'blah';
 }
 
 Encounter.prototype = {

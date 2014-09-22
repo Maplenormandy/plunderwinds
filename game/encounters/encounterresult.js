@@ -20,7 +20,7 @@ function EncounterResult(flavorText) {
  * @param {string} flavorText The flavor text for the encounter outcome
  * @param {string} mechanicsText The text that describes the outcome's effects
  * @param {function} effectFunc The function that actually makes the effect
- * happen. Should be function(playState) with no return.
+ * happen. Should be function(ship, encounterManager) with no return.
  */
 function Outcome(flavorText, mechanicsText, effectFunc) {
   this.flavorText = flavorText;
