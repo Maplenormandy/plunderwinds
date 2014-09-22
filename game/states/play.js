@@ -23,6 +23,11 @@ function Play() {}
 
 Play.prototype = {
   create: function() {
+    // stamina and gold are attached to game directly for now, but would
+    // probably be cleaner on ship or in their own struct.
+    this.game.stamina = 20;
+    this.game.gold = 0;
+
     this.grid = new Grid(this.game);
     this.ship = new Ship(this.game, this.grid);
     this.sidepanel = new Sidepanel(this.game);

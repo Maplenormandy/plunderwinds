@@ -19,11 +19,11 @@ function Ship(game, grid) {
   this.grid = grid;
   grid.ship = this;
 
-  //should not be hardcoded
+  // should not be hardcoded
   this.gridX = 0;
   this.gridY = 0;
 
-  //init position without animation
+  // init position without animation
   this.moveTo(1, false);
   this.moveTo(3, false);
 
@@ -41,7 +41,14 @@ Ship.prototype.constructor = Ship;
  */
 
 Ship.prototype.canMove = function() {
-  return [this.gridY>0, this.gridX<this.grid.spritesX-1, this.gridY<this.grid.spritesX-1, this.gridX>0];
+  if (this.game.stamina <= 0)
+    return [false, false, false, false];
+  return [
+    this.gridY>0, 
+    this.gridX<this.grid.spritesX-1, 
+    this.gridY<this.grid.spritesX-1, 
+    this.gridX>0
+  ];
 };
 
 /**
@@ -67,6 +74,10 @@ Ship.prototype.moveTo = function(dir, anim) {
 
   this.gridX += step[0];
   this.gridY += step[1];
+
+  // should depend on wind speed
+  var staminaCost = 1;
+  this.game.stamina -= staminaCost;
 
   var absPos = this.absPos();
 
