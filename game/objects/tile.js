@@ -11,8 +11,9 @@ var Sprite = require('./sprite');
  * @param {string} key - sprite graphics key
  */
 
-function Tile(game, grid, x, y, key) {
-  this.game = game;
+function Tile(play, grid, x, y, key) {
+  this.play = play;
+  this.game = play.game;
   this.grid = grid;
 
   Sprite.call(this, game, x, y, key);
@@ -50,8 +51,7 @@ Tile.prototype.onClick = function() {
   else if (dx == -1 && dy == 0)
     dir = this.grid.LEFT;
 
-  this.grid.ship.moveTo(dir);
-  this.game.sidePanel.update();
+  this.play.nextTurn(dir);
 };
 
 Tile.prototype.showDanger = function() {

@@ -6,10 +6,11 @@ var Compass = require('./compass');
 	@param {Phaser.game} game
 */
 
-function Sidepanel(game){
+function Sidepanel(play){
 
-	//reference to the game
-	this.game = game;
+	// reference to the game and play state
+	this.game = play.game;
+  this.play = play;
 
 	/**
 		places the compass
@@ -40,9 +41,6 @@ function Sidepanel(game){
 	var optionsstyle = {font: "25px IM Fell English SC", fill: '#ffffff', align: "center"};
 	this.optionstext = game.add.text(700, 25, optionswords, optionsstyle);
 	this.optionstext.anchor.setTo(0.5, 0);
-
-  game.sidePanel = this;
-  this.game = game;
 }
 
 // Draw new text to reflect the ship's state.

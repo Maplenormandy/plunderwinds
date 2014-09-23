@@ -10,13 +10,15 @@ var Sprite = require('./sprite');
  * @param {Grid} grid - The grid
  */
 
-function Ship(game, grid) {
+function Ship(play) {
   if (typeof game === 'undefined' || typeof grid === 'undefined') {
     throw 'The grid reference should be passed!';
   }
   this.spriteTitle = 'ship';  
   Sprite.call(this, game, 0, 0, this.spriteTitle);
-  this.grid = grid;
+  this.play = play;
+  this.game = play.game;
+  this.grid = play.grid;
   grid.ship = this;
 
   // should not be hardcoded
@@ -59,7 +61,7 @@ Ship.prototype.canMove = function() {
  * @param {Boolean} [anim] - should be animated
  */
 
-Ship.prototype.moveTo = function(dir, anim) {
+Ship.prototype.moveTo = function(dir, anim, callback) {
   if (dir < 0 || dir > 4 || dir == null) { return; }
   if (typeof anim === 'undefined') { anim = true; }
 
@@ -85,6 +87,7 @@ Ship.prototype.moveTo = function(dir, anim) {
   if (anim) {
     var move = this.game.add.tween(this.phSprite);
     move.to({x: absPos[0], y: absPos[1]}, 500, Phaser.Easing.Cubic.Out);
+    move.onComplete.add(callback);
     move.start();
   } else {
     this.phSprite.x = absPos[0];

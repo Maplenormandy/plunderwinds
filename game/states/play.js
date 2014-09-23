@@ -5,7 +5,6 @@ var Ship = require('../objects/ship');
 
 var Sidepanel = require('../objects/sidepanel');
 
-
 var EncounterManager = require('../encounters/encountermanager');
 var encounters = {
   Pirates: require('../encounters/pirates'),
@@ -28,9 +27,20 @@ Play.prototype = {
     this.game.stamina = 20;
     this.game.gold = 0;
 
-    this.grid = new Grid(this.game);
-    this.ship = new Ship(this.game, this.grid);
-    this.sidepanel = new Sidepanel(this.game);
+    // The game can be in one of four states
+    this.STATES = {
+      STANDBY: "wait",
+      MOVING: "moving",
+      ENCOUNTER: "encounter",
+      OVER: "over"
+    };
+    this.state = this.STATES.STANDBY;
+
+
+    // Order is important: grid then ship then side panel
+    this.grid = new Grid(this);
+    this.ship = new Ship(this);
+    this.sidePanel = new Sidepanel(this);
 
     // Initialize encounters
     this.encounterManager = new EncounterManager([50]);
@@ -51,8 +61,24 @@ Play.prototype = {
       this.encounterManager.remove(encounters.Treasure);
     }
   },
-  update: function() {
-
+  movePlayer: function(dir) {
+    // Called when the player clicks on a nearby tile. Advance to the next turn,
+    // and wait for player input.
+    if (this.state == this.STATES.STANDBY) {
+      this.state = this.STATES.MOVING;
+      // when the ship finishes moving, it triggers the beginEncounter callback
+      this.grid.ship.moveTo(dir, this.beginEncounter);
+      this.game.sidePanel.update();
+    }
+  },
+  beginEncounter: function() {
+    if (this.state == this.STATES.MOVING) {
+      this.state = this.STATES.ENCOUNTER;
+      // choose random encounter and remove it from the deck
+      var encounter = this.encounterManager.next();
+      this.encounterManager.remove(encounter.constructor);
+      encounter.getResult(tile.riskLevel)
+    }
   },
   clickListener: function() {
     // This causes init(this) to get called on the gameover state
