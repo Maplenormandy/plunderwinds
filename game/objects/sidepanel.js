@@ -3,27 +3,28 @@ var Compass = require('./compass');
 /**
 	@author: Tricia
 	@constructor
-	@param {Phaser.game} game
+	@param {Play} play
 */
 
 function Sidepanel(play){
 
 	// reference to the game and play state
-	this.game = play.game;
   this.play = play;
+	this.game = play.game;
+  this.ship = play.ship;
 
 	/**
 		places the compass
 		200x200
 	*/
-	this.compass = new Compass(game, 700, 500);
+	this.compass = new Compass(this.game, 700, 500);
 
 	/**
 		places stamina bar, default 20 stamina
 	*/ 
-	var stamwords = "stamina \n " + game.stamina;
+	var stamwords = "stamina \n " + this.ship.stamina;
 	var stamstyle = {font: "25px IM Fell English SC", fill: '#ffffff', align: "center"};
-	this.stamtext = game.add.text(650, 325, stamwords, stamstyle);
+	this.stamtext = this.game.add.text(650, 325, stamwords, stamstyle);
 	this.stamtext.anchor.setTo(0.5, 0);
 
 	/**
@@ -31,7 +32,7 @@ function Sidepanel(play){
 	*/
 	var goldwords = "gold \n 0";
 	var goldstyle = {font: "25px IM Fell English SC", fill: '#ffffff', align: "center"};
-	this.goldtext = game.add.text(750, 325, goldwords, goldstyle);
+	this.goldtext = this.game.add.text(750, 325, goldwords, goldstyle);
 	this.goldtext.anchor.setTo(0.5, 0);
 
 	/**
@@ -39,18 +40,19 @@ function Sidepanel(play){
 	*/
 	var optionswords = "options";
 	var optionsstyle = {font: "25px IM Fell English SC", fill: '#ffffff', align: "center"};
-	this.optionstext = game.add.text(700, 25, optionswords, optionsstyle);
+	this.optionstext = this.game.add.text(700, 25, optionswords, optionsstyle);
 	this.optionstext.anchor.setTo(0.5, 0);
 }
 
 // Draw new text to reflect the ship's state.
 Sidepanel.prototype.update = function() {
   // update stamina bar
-	var stamwords = "stamina \n " + this.game.stamina;
+	var stamwords = "stamina \n " + this.ship.stamina;
 	this.stamtext.text = stamwords;
 
   // update gold counter
-	var goldwords = "gold \n " + this.game.gold;
+  // TODO: gold and treasure are the same thing, should be called same
+	var goldwords = "gold \n " + this.ship.treasure;
 	this.goldtext.text = goldwords;
 }
 

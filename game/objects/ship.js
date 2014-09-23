@@ -11,15 +11,20 @@ var Sprite = require('./sprite');
  */
 
 function Ship(play) {
-  if (typeof game === 'undefined' || typeof grid === 'undefined') {
+  if (typeof play === 'undefined' || typeof play.grid === 'undefined') {
     throw 'The grid reference should be passed!';
   }
+
   this.spriteTitle = 'ship';  
   Sprite.call(this, game, 0, 0, this.spriteTitle);
+
   this.play = play;
   this.game = play.game;
   this.grid = play.grid;
   grid.ship = this;
+
+  this.stamina = 20;
+  this.treasure = 0;
 
   // should not be hardcoded
   this.gridX = 0;
@@ -44,7 +49,7 @@ Ship.prototype.constructor = Ship;
  */
 
 Ship.prototype.canMove = function() {
-  if (this.game.stamina <= 0)
+  if (this.stamina <= 0)
     return [false, false, false, false];
   return [
     this.gridY > 0, 
@@ -80,7 +85,7 @@ Ship.prototype.moveTo = function(dir, anim, callback) {
 
   // should depend on wind speed
   var staminaCost = 1;
-  this.game.stamina -= staminaCost;
+  this.stamina -= staminaCost;
 
   var absPos = this.absPos();
 

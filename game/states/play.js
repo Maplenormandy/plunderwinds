@@ -22,11 +22,6 @@ function Play() {}
 
 Play.prototype = {
   create: function() {
-    // stamina and gold are attached to game directly for now, but would
-    // probably be cleaner on ship or in their own struct.
-    this.game.stamina = 20;
-    this.game.gold = 0;
-
     // The game can be in one of four states
     this.STATES = {
       STANDBY: "wait",
@@ -35,7 +30,6 @@ Play.prototype = {
       OVER: "over"
     };
     this.state = this.STATES.STANDBY;
-
 
     // Order is important: grid then ship then side panel
     this.grid = new Grid(this);
@@ -76,9 +70,17 @@ Play.prototype = {
       this.state = this.STATES.ENCOUNTER;
       // choose random encounter and remove it from the deck
       var encounter = this.encounterManager.next();
+      var tile = this.grid.tiles[this.ship.gridX][this.ship.gridY];
+      var result = encounter.getResult(tile.riskLevel);
       this.encounterManager.remove(encounter.constructor);
-      encounter.getResult(tile.riskLevel)
+
+      // TODO
+      showEncounter(encounter, this);
     }
+  },
+  endEncounter: function(outcome) {
+    outcome.effectFunc(this.ship, this.encounterManager);
+    this.state = this.STATES.STANDBY;
   },
   clickListener: function() {
     // This causes init(this) to get called on the gameover state
