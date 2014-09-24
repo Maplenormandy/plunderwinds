@@ -67,12 +67,13 @@ Grid.prototype.updateFog = function () {
 	var shipY = this.ship.gridY;
 
 	for (var i = 0; i < this.spritesX; i++) for (var j = 0; j < this.spritesX; j++) {
-		// if the distance from tile to ship is small enough
+		// if the distance from tile to ship is small enough, reveal it
 		if ((i-shipX)*(i-shipX) + (j-shipY)*(j-shipY) < 4.1) {
-			this.tiles[i][j].showDanger();
-		} else {
-			this.tiles[i][j].hideDanger();
+			this.tiles[i][j].revealed = true;
 		}
+
+		// update the grid's danger score
+		this.tiles[i][j].updateDanger();
 	}
 };
 
