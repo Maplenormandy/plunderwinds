@@ -28,6 +28,9 @@ function Tile(play, grid, x, y, key) {
   this.dangerText.anchor.setTo(0.5);
 
   this.danger = Math.floor((Math.random() * 8) + 1);
+
+
+  this.revealed = false;
 }
 
 // inherit from Sprite
@@ -60,6 +63,14 @@ Tile.prototype.showDanger = function() {
 
 Tile.prototype.hideDanger = function() {
 	this.dangerText.text = '';
+};
+
+Tile.prototype.updateDanger = function() {
+  if (this.revealed) {
+    this.showDanger();
+  } else {
+    this.hideDanger();
+  }
 };
 
 module.exports = Tile;
