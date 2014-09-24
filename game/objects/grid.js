@@ -16,7 +16,7 @@ function Grid(play) {
   this.play = play;
 	this.game = play.game;
   this.phGroup = this.game.add.group();
-	this.basicTile = 'tile_basic';
+	this.basicTile = 'tiles';
 	this.constructTilemap();
 
   // directional constants for convenience
@@ -71,6 +71,19 @@ Grid.prototype.updateFog = function () {
 		// if the distance from tile to ship is small enough, reveal it
 		if ((i-shipX)*(i-shipX) + (j-shipY)*(j-shipY) < 4.1) {
 			this.tiles[i][j].revealed = true;
+			//after revealing the tile, also set the color
+			if (this.tiles[i][j].danger < 3){
+				this.tiles[i][j].phSprite.frame = 1;
+			}
+			else if (this.tiles[i][j].danger < 6){
+				this.tiles[i][j].phSprite.frame = 3;
+			}
+			else if (this.tiles[i][j].danger < 8){
+				this.tiles[i][j].phSprite.frame = 4;
+			}
+			else if (this.tiles[i][j].danger == 8){
+				this.tiles[i][j].phSprite.frame = 6;
+			}
 		}
 
 		// update the grid's danger score

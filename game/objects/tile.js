@@ -17,9 +17,12 @@ function Tile(play, grid, x, y, key) {
   this.grid = grid;
 
   Sprite.call(this, this.game, x, y, key);
-  this.phSprite.crop(new Phaser.Rectangle(0, 0, 100, 100), true);
+/*  this.phSprite.crop(new Phaser.Rectangle(0, 0, 100, 100), true);*/
   this.phSprite.inputEnabled = true;
   this.phSprite.events.onInputDown.add(this.onClick, this);
+  this.phSprite.anchor.setTo(0.5, 0.5);
+  this.phSprite.scale.setTo(0.5, 0.5);
+
 
   //should probably be implemented as a transparent sprite instead,
   //but this works for testing
@@ -28,7 +31,6 @@ function Tile(play, grid, x, y, key) {
   this.dangerText.anchor.setTo(0.5);
 
   this.danger = Math.floor((Math.random() * 8) + 1);
-
 
   this.revealed = false;
 }

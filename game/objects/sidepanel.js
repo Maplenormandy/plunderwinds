@@ -23,7 +23,7 @@ function Sidepanel(play){
 		places stamina bar, default 20 stamina
 	*/ 
 	var stamwords = "stamina \n " + this.ship.stamina;
-	var stamstyle = {font: "25px IM Fell English SC", fill: '#ffffff', align: "center"};
+	var stamstyle = {font: "25px IM Fell English SC", fill: '#000000', align: "center"};
 	this.stamtext = this.game.add.text(650, 325, stamwords, stamstyle);
 	this.stamtext.anchor.setTo(0.5, 0);
 
@@ -31,7 +31,7 @@ function Sidepanel(play){
 		places gold bar, default 0 gold
 	*/
 	var goldwords = "gold \n 0";
-	var goldstyle = {font: "25px IM Fell English SC", fill: '#ffffff', align: "center"};
+	var goldstyle = {font: "25px IM Fell English SC", fill: '#000000', align: "center"};
 	this.goldtext = this.game.add.text(750, 325, goldwords, goldstyle);
 	this.goldtext.anchor.setTo(0.5, 0);
 
@@ -39,7 +39,7 @@ function Sidepanel(play){
 		places options text
 	*/
 	var optionswords = "options";
-	var optionsstyle = {font: "25px IM Fell English SC", fill: '#ffffff', align: "center"};
+	var optionsstyle = {font: "25px IM Fell English SC", fill: '#000000', align: "center"};
 	this.optionstext = this.game.add.text(700, 25, optionswords, optionsstyle);
 	this.optionstext.anchor.setTo(0.5, 0);
 }
