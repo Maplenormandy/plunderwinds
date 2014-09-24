@@ -6,7 +6,7 @@ var Ship = require('../objects/ship');
 var Sidepanel = require('../objects/sidepanel');
 
 var EncounterManager = require('../encounters/encountermanager');
-// var encounterPopup = require('../encounters/encounterpopup');
+var encounterPopup = require('../encounters/encounterpopup');
 var encounters = {
   Pirates: require('../encounters/pirates'),
   RoyalNavy: require('../encounters/royalnavy'),
@@ -116,6 +116,7 @@ Play.prototype = {
    */
   showResult: function(result) {
     console.log(result);
+    encounterPopup(this.game, result);
     var outcome = this.game.rnd.pick(result.outcomes);
     this.endEncounter(outcome);
   },
