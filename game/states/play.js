@@ -23,6 +23,9 @@ function Play() {}
 
 Play.prototype = {
   create: function() {
+    // Set the background color to pleasant beige
+    this.stage.backgroundColor = "#F1F1D4";
+
     // The game can be in one of four states
     this.STATES = {
       STANDBY: "wait",
@@ -31,12 +34,12 @@ Play.prototype = {
       OVER: "over"
     };
     this.state = this.STATES.STANDBY;
+    this.startTime = new Date().getTime();
 
     // Order is important: grid then ship then side panel
     this.grid = new Grid(this);
     this.ship = new Ship(this);
     this.sidePanel = new Sidepanel(this);
-
 
     // the result of an encounter can be shown using the encounterPopup function:
     //
@@ -45,7 +48,6 @@ Play.prototype = {
     //   descriptionText: 'Maecenas condimentum risus a libero posuere suscipit. +5 lorem ipsum.',
     //   imageKey: 'encounter-image-booty'
     // });
-
 
     // Initialize encounters
     this.encounterManager = new EncounterManager([50]);
@@ -121,6 +123,9 @@ Play.prototype = {
     outcome.effectFunc(this.ship, this.encounterManager);
     this.state = this.STATES.STANDBY;
     this.sidePanel.update();
+    if (this.ship.stamina <= 0) {
+      this.game.state.start('gameover', true, false, this);
+    }
   },
 
   failToMove: function(me) {

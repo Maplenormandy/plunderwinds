@@ -28,7 +28,6 @@ Menu.prototype = {
   },
   update: function() {
     if(this.game.input.activePointer.justPressed()) {
-      this.stage.backgroundColor = "#F1F1D4";
       this.game.state.start('play');
     }
   }
