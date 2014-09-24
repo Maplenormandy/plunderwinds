@@ -81,8 +81,6 @@ Ship.prototype.moveTo = function(dir, anim, successCb, failCb) {
     case this.grid.LEFT: step = [-1, 0]; break;
   }
 
-  
-
   if (anim) {
     // should depend on wind speed
     var staminaCost = 1;
@@ -117,6 +115,9 @@ Ship.prototype.moveTo = function(dir, anim, successCb, failCb) {
     this.phSprite.x = absPos[0];
     this.phSprite.y = absPos[1];
   }
+
+  // mark the tile so that we cannot move here again
+  this.grid.tiles[this.gridX][this.gridY].mark();
 
   this.grid.updateFog();
 };

@@ -15,6 +15,7 @@ function Tile(play, grid, x, y, key) {
   this.play = play;
   this.game = play.game;
   this.grid = grid;
+  this.playerTouched = false;
 
   Sprite.call(this, this.game, x, y, key);
 /*  this.phSprite.crop(new Phaser.Rectangle(0, 0, 100, 100), true);*/
@@ -46,8 +47,11 @@ Tile.prototype.onClick = function() {
   var dy = gridPos.y - this.grid.ship.gridY;
   var dir = null;
 
-  // figure out which direction (if any) to move.
-  if (dx == 0 && dy == 1)
+  // figure out which direction (if any) to move. if the tile has been touched
+  // already, the player can't move here.
+  if (this.playerTouched)
+    dir = null;
+  else if (dx == 0 && dy == 1)
     dir = this.grid.DOWN;
   else if (dx == 0 && dy == -1)
     dir = this.grid.UP;
@@ -59,8 +63,17 @@ Tile.prototype.onClick = function() {
   this.play.movePlayer(dir);
 };
 
+Tile.prototype.mark = function() {
+  this.playerTouched = true;
+}
+
 Tile.prototype.showDanger = function() {
-	this.dangerText.text = this.danger.toString();
+  // If the tile is unavailable, mark with an X for now. TODO: should be
+  // graphical.
+  if (this.playerTouched)
+    this.dangerText.text = 'X';
+  else 
+    this.dangerText.text = this.danger.toString();
 };
 
 Tile.prototype.hideDanger = function() {

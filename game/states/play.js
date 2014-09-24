@@ -75,7 +75,7 @@ Play.prototype = {
       this.state = this.STATES.MOVING;
       // when the ship finishes moving, it triggers the beginEncounter callback
       // if it fails to move, call the other callback
-      this.grid.ship.moveTo(dir, true,
+      this.ship.moveTo(dir, true,
         (function(me) {
           return function () {
             return me.beginEncounter(me)
