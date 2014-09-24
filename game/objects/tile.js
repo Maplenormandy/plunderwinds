@@ -59,7 +59,6 @@ Tile.prototype.onClick = function() {
     dir = this.grid.RIGHT;
   else if (dx == -1 && dy == 0)
     dir = this.grid.LEFT;
-
   this.play.movePlayer(dir);
 };
 
@@ -71,7 +70,7 @@ Tile.prototype.showDanger = function() {
   // If the tile is unavailable, mark with an X for now. TODO: should be
   // graphical.
   if (this.playerTouched)
-    this.dangerText.text = 'X';
+    this.dangerText.text = '';
   else 
     this.dangerText.text = this.danger.toString();
 };
