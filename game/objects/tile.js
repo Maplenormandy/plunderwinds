@@ -11,11 +11,12 @@ var Sprite = require('./sprite');
  * @param {string} key - sprite graphics key
  */
 
-function Tile(game, grid, x, y, key) {
-  this.game = game;
+function Tile(play, grid, x, y, key) {
+  this.play = play;
+  this.game = play.game;
   this.grid = grid;
 
-  Sprite.call(this, game, x, y, key);
+  Sprite.call(this, this.game, x, y, key);
   this.phSprite.crop(new Phaser.Rectangle(0, 0, 100, 100), true);
   this.phSprite.inputEnabled = true;
   this.phSprite.events.onInputDown.add(this.onClick, this);
@@ -53,8 +54,7 @@ Tile.prototype.onClick = function() {
   else if (dx == -1 && dy == 0)
     dir = this.grid.LEFT;
 
-  this.grid.ship.moveTo(dir);
-  this.game.sidePanel.update();
+  this.play.movePlayer(dir);
 };
 
 Tile.prototype.showDanger = function() {

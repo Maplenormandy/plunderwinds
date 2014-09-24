@@ -10,14 +10,22 @@ var Sprite = require('./sprite');
  * @param {Grid} grid - The grid
  */
 
-function Ship(game, grid) {
-  if (typeof game === 'undefined' || typeof grid === 'undefined') {
+function Ship(play) {
+  if (typeof play === 'undefined' || typeof play.grid === 'undefined') {
     throw 'The grid reference should be passed!';
   }
+
   this.spriteTitle = 'ship';  
-  Sprite.call(this, game, 0, 0, this.spriteTitle);
-  this.grid = grid;
-  grid.ship = this;
+  
+  this.play = play;
+  this.game = play.game;
+  this.grid = play.grid;
+  this.grid.ship = this;
+
+  Sprite.call(this, this.game, 0, 0, this.spriteTitle);
+
+  this.stamina = 20;
+  this.treasure = 0;
 
   // should not be hardcoded
   this.gridX = 0;
@@ -27,7 +35,7 @@ function Ship(game, grid) {
   this.moveTo(1, false);
   this.moveTo(3, false);
 
-  this.moveTo(1);
+  this.moveTo(1, false);
 }
 
 // Inherits from Sprite
@@ -42,7 +50,7 @@ Ship.prototype.constructor = Ship;
  */
 
 Ship.prototype.canMove = function() {
-  if (this.game.stamina <= 0)
+  if (this.stamina <= 0)
     return [false, false, false, false];
   return [
     this.gridY > 0, 
@@ -59,7 +67,7 @@ Ship.prototype.canMove = function() {
  * @param {Boolean} [anim] - should be animated
  */
 
-Ship.prototype.moveTo = function(dir, anim) {
+Ship.prototype.moveTo = function(dir, anim, callback) {
   if (dir < 0 || dir > 4 || dir == null) { return; }
   if (typeof anim === 'undefined') { anim = true; }
 
@@ -78,13 +86,16 @@ Ship.prototype.moveTo = function(dir, anim) {
 
   // should depend on wind speed
   var staminaCost = 1;
-  this.game.stamina -= staminaCost;
+  this.stamina -= staminaCost;
 
   var absPos = this.absPos();
 
   if (anim) {
     var move = this.game.add.tween(this.phSprite);
     move.to({x: absPos[0], y: absPos[1]}, 500, Phaser.Easing.Cubic.Out);
+    if (typeof callback !== 'undefined') {
+      move.onComplete.add(callback);
+    }
     move.start();
   } else {
     this.phSprite.x = absPos[0];
