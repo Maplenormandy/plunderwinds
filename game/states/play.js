@@ -125,13 +125,15 @@ Play.prototype = {
     this.sidePanel.update();
     if (this.ship.stamina <= 0 || !this.ship.canMoveAnywhere()) {
       this.game.state.start('gameover', true, false, this);
-    }    
+    }
   },
 
   failToMove: function(me) {
     //console.log("Fighting the wind!");
     me.state = me.STATES.STANDBY;
     this.sidePanel.update();
+    if (this.ship.stamina <= 0) 
+      this.game.state.start('gameover', true, false, this);
   },
 
   clickListener: function() {
