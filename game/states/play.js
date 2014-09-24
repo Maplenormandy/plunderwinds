@@ -6,6 +6,7 @@ var Ship = require('../objects/ship');
 var Sidepanel = require('../objects/sidepanel');
 
 var EncounterManager = require('../encounters/encountermanager');
+// var encounterPopup = require('../encounters/encounterpopup');
 var encounters = {
   Pirates: require('../encounters/pirates'),
   RoyalNavy: require('../encounters/royalnavy'),
@@ -35,6 +36,16 @@ Play.prototype = {
     this.grid = new Grid(this);
     this.ship = new Ship(this);
     this.sidePanel = new Sidepanel(this);
+
+
+    // the result of an encounter can be shown using the encounterPopup function:
+    //
+    // encounterPopup(this.game, 
+    //   {flavorText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum condimentum arcu.',
+    //   descriptionText: 'Maecenas condimentum risus a libero posuere suscipit. +5 lorem ipsum.',
+    //   imageKey: 'encounter-image-booty'
+    // });
+
 
     // Initialize encounters
     this.encounterManager = new EncounterManager([50]);
