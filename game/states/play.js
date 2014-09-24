@@ -60,6 +60,10 @@ Play.prototype = {
   movePlayer: function(dir) {
     // Called when the player clicks on a nearby tile. Advance to the next turn,
     // and wait for player input.
+    if (dir == null) {
+      return;
+    }
+    
     if (this.state == this.STATES.STANDBY) {
       var newWind = this.encounterManager.rnd.between(1,4) * 2;
       if (Math.abs(newWind - this.wind) <= 2 || Math.abs(newWind - this.wind) == 6) {
