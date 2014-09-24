@@ -23,6 +23,7 @@ Preload.prototype = {
     this.load.setPreloadSprite(this.asset);
     this.load.image('yeoman', 'assets/yeoman-logo.png');
     this.load.image('compass', 'assets/compass.png');
+    this.load.image('compass_arrow', 'assets/compassarrow-01.png')
     this.load.spritesheet('tiles', 'assets/tiles2-01.png', 200, 200);
 /*    this.load.image('tile0', 'assets/tile0.png');
     this.load.image('tile1', 'assets/tile1.png');

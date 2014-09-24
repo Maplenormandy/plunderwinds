@@ -16,7 +16,8 @@ function Compass(game, x, y) {
   this.phSprite.scale.setTo(0.4, 0.4);
 
   this.arrow = this.game.add.sprite(this.x, this.y, 'compass_arrow');
-  this.arrow.anchor.setTo(0.5, 2.0);
+  this.arrow.anchor.setTo(0.5, 1.0);
+  this.arrow.scale.setTo(0.25, 0.25);
 
   this.direction = 0;
 
