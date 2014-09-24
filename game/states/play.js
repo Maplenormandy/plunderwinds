@@ -42,18 +42,6 @@ Play.prototype = {
     this.encounterManager.add(encounters.Pirates, 7);
     this.encounterManager.add(encounters.RoyalNavy, 3);
     this.encounterManager.add(encounters.Treasure, 10);
-
-    // Run a test of the encounter manager. This is purely test code
-    // Test random draws
-    for (var i = 0; i < 40; ++i) {
-      console.log(this.encounterManager.next());
-    }
-    // Test draw and remove
-    for (var j = 0; j < 20; ++j) {
-      console.log(this.encounterManager.encounters);
-      console.log(this.encounterManager.next());
-      this.encounterManager.remove(encounters.Treasure);
-    }
   },
   movePlayer: function(dir) {
     // Called when the player clicks on a nearby tile. Advance to the next turn,
@@ -61,27 +49,52 @@ Play.prototype = {
     if (this.state == this.STATES.STANDBY) {
       this.state = this.STATES.MOVING;
       // when the ship finishes moving, it triggers the beginEncounter callback
-      this.grid.ship.moveTo(dir, this.beginEncounter);
-      this.game.sidePanel.update();
+      this.grid.ship.moveTo(dir, true, (function(me) { return me.beginEncounter(me) })(this));
+      this.sidePanel.update();
     }
   },
-  beginEncounter: function() {
-    if (this.state == this.STATES.MOVING) {
-      this.state = this.STATES.ENCOUNTER;
+  
+  /**
+   * A callback function to begin the encounter phase. Calls showResult
+   *
+   * @param {Play} me this changes based on who calls the function, so hack in
+   * a closure.
+   */
+  beginEncounter: function(me) {
+    if (me.state == me.STATES.MOVING) {
+      me.state = me.STATES.ENCOUNTER;
       // choose random encounter and remove it from the deck
-      var encounter = this.encounterManager.next();
-      var tile = this.grid.tiles[this.ship.gridX][this.ship.gridY];
-      var result = encounter.getResult(tile.riskLevel);
-      this.encounterManager.remove(encounter.constructor);
+      var encounter = me.encounterManager.next();
+      var tile = me.grid.tiles[me.ship.gridX][me.ship.gridY];
+      var result = encounter.getResult(tile.danger);
 
-      // TODO
-      showEncounter(encounter, this);
+      me.showResult(result);
     }
   },
+
+  /**
+   * Shows the result of the encounter, and presents the player with the choices
+   * they can make in response. Calls endEncounter
+   *
+   * @param {EncounterResult} result The result from an encounter.getResult
+   */
+  showResult: function(result) {
+    console.log(result);
+    var outcome = this.game.rnd.pick(result.outcomes);
+    this.endEncounter(outcome);
+  },
+
+  /**
+   * Ends the encounter phase by with the chosen outcome
+   *
+   * @param {Outcome} outcome The player's decision from result.outcomes
+   */
   endEncounter: function(outcome) {
+    console.log(outcome);
     outcome.effectFunc(this.ship, this.encounterManager);
     this.state = this.STATES.STANDBY;
   },
+
   clickListener: function() {
     // This causes init(this) to get called on the gameover state
     // this.game.state.start('gameover', true, false, this);

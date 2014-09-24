@@ -16,12 +16,13 @@ function Ship(play) {
   }
 
   this.spriteTitle = 'ship';  
-  Sprite.call(this, game, 0, 0, this.spriteTitle);
-
+  
   this.play = play;
   this.game = play.game;
   this.grid = play.grid;
-  grid.ship = this;
+  this.grid.ship = this;
+
+  Sprite.call(this, this.game, 0, 0, this.spriteTitle);
 
   this.stamina = 20;
   this.treasure = 0;
@@ -34,7 +35,7 @@ function Ship(play) {
   this.moveTo(1, false);
   this.moveTo(3, false);
 
-  this.moveTo(1);
+  this.moveTo(1, false);
 }
 
 // Inherits from Sprite
@@ -92,7 +93,9 @@ Ship.prototype.moveTo = function(dir, anim, callback) {
   if (anim) {
     var move = this.game.add.tween(this.phSprite);
     move.to({x: absPos[0], y: absPos[1]}, 500, Phaser.Easing.Cubic.Out);
-    move.onComplete.add(callback);
+    if (typeof callback !== 'undefined') {
+      move.onComplete.add(callback);
+    }
     move.start();
   } else {
     this.phSprite.x = absPos[0];

@@ -13,9 +13,9 @@ function Grid(play) {
 	this.spriteSize = 100;
 	this.spritesX = 6;
 	this.tiles = [];
-	this.phGroup = game.add.group();
   this.play = play;
 	this.game = play.game;
+  this.phGroup = this.game.add.group();
 	this.basicTile = 'tile_basic';
 	this.constructTilemap();
 
@@ -53,7 +53,7 @@ Grid.prototype.constructTilemap = function () {
 		this.tiles[i] = [];
 
 		for (var j = 0; j < this.spritesX; j++) {
-      this.tiles[i][j] = new Tile(this.game, this, (i+0.5)*this.spriteSize,
+      this.tiles[i][j] = new Tile(this.play, this, (i+0.5)*this.spriteSize,
                                   (j+0.5)*this.spriteSize, this.basicTile);
 			this.phGroup.add(this.tiles[i][j].phSprite);
 		}
