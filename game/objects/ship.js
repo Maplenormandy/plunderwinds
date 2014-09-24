@@ -28,14 +28,14 @@ function Ship(play) {
   this.treasure = 0;
 
   // should not be hardcoded
-  this.gridX = 0;
-  this.gridY = 0;
+  this.gridX = 2;
+  this.gridY = 2;
 
   // init position without animation
   this.moveTo(1, false);
-  this.moveTo(3, false);
+  //this.moveTo(3, false);
 
-  this.moveTo(1, false);
+  //this.moveTo(1, false);
 }
 
 // Inherits from Sprite
@@ -67,7 +67,7 @@ Ship.prototype.canMove = function() {
  * @param {Boolean} [anim] - should be animated
  */
 
-Ship.prototype.moveTo = function(dir, anim, callback) {
+Ship.prototype.moveTo = function(dir, anim, successCb, failCb) {
   if (dir < 0 || dir > 4 || dir == null) { return; }
   if (typeof anim === 'undefined') { anim = true; }
 
@@ -81,23 +81,39 @@ Ship.prototype.moveTo = function(dir, anim, callback) {
     case this.grid.LEFT: step = [-1, 0]; break;
   }
 
-  this.gridX += step[0];
-  this.gridY += step[1];
-
-  // should depend on wind speed
-  var staminaCost = 1;
-  this.stamina -= staminaCost;
-
-  var absPos = this.absPos();
+  
 
   if (anim) {
+    // should depend on wind speed
+    var staminaCost = 1;
+
+    if (this.play.wind/2 == dir) {
+      staminaCost = 0;
+    } else if (Math.abs(this.play.wind/2 - dir) == 2) {
+      this.stamina -= staminaCost;
+      failCb();
+      return;
+    }
+
+    this.stamina -= staminaCost;
+
+    this.gridX += step[0];
+    this.gridY += step[1];
+
+    var absPos = this.absPos();
+
     var move = this.game.add.tween(this.phSprite);
     move.to({x: absPos[0], y: absPos[1]}, 500, Phaser.Easing.Cubic.Out);
-    if (typeof callback !== 'undefined') {
-      move.onComplete.add(callback);
+    if (typeof successCb !== 'undefined') {
+      move.onComplete.add(successCb);
     }
     move.start();
   } else {
+    this.gridX += step[0];
+    this.gridY += step[1];
+
+    var absPos = this.absPos();
+
     this.phSprite.x = absPos[0];
     this.phSprite.y = absPos[1];
   }

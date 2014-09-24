@@ -53,14 +53,35 @@ Play.prototype = {
     this.encounterManager.add(encounters.Pirates, 7);
     this.encounterManager.add(encounters.RoyalNavy, 3);
     this.encounterManager.add(encounters.Treasure, 10);
+
+    this.wind = this.encounterManager.rnd.between(1,4) * 2;
+    this.sidePanel.compass.pointTo(this.wind);
   },
   movePlayer: function(dir) {
     // Called when the player clicks on a nearby tile. Advance to the next turn,
     // and wait for player input.
     if (this.state == this.STATES.STANDBY) {
+      var newWind = this.encounterManager.rnd.between(1,4) * 2;
+      if (Math.abs(newWind - this.wind) <= 2 || Math.abs(newWind - this.wind) == 6) {
+        this.wind = newWind;
+        this.sidePanel.compass.pointTo(this.wind);
+      }
+
       this.state = this.STATES.MOVING;
       // when the ship finishes moving, it triggers the beginEncounter callback
-      this.grid.ship.moveTo(dir, true, (function(me) { return me.beginEncounter(me) })(this));
+      // if it fails to move, call the other callback
+      this.grid.ship.moveTo(dir, true,
+        (function(me) {
+          return function () {
+            return me.beginEncounter(me)
+          }
+        })(this),
+        (function(me) {
+          return function () {
+            return me.failToMove(me)
+          }
+        })(this)
+        );
       this.sidePanel.update();
     }
   },
@@ -104,6 +125,13 @@ Play.prototype = {
     console.log(outcome);
     outcome.effectFunc(this.ship, this.encounterManager);
     this.state = this.STATES.STANDBY;
+    console.log(this.state);
+  },
+
+  failToMove: function(me) {
+    console.log("Fighting the wind!");
+    me.state = me.STATES.STANDBY;
+    console.log(me.state);
   },
 
   clickListener: function() {

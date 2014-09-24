@@ -16,7 +16,7 @@ function Compass(game, x, y) {
   this.phSprite.scale.setTo(0.4, 0.4);
 
   this.arrow = this.game.add.sprite(this.x, this.y, 'compass_arrow');
-  this.arrow.anchor.setTo(0.5, 1);
+  this.arrow.anchor.setTo(0.5, 2.0);
 
   this.direction = 0;
 
@@ -28,11 +28,21 @@ Compass.prototype = new Sprite();
 Compass.prototype.constructor = Compass;
 
 Compass.prototype.pointTo = function(dir) {
-  this.direction = dir;
+  var targetAngle = (dir % 8)/8*360;
 
-  var target = (dir % 8)/8*360;
+  // Check if the target angle is to the left or to the right of the current angle
+  var target = (((targetAngle - this.arrow.angle + 180) % 360) - 180);
+  if (target > 0) {
+    target = '+' + target;
+  } else {
+    target = '' + target;
+  }
+
+  this.direction = dir;
+  
+
   this.game.add.tween(this.arrow)
-  .to({angle: target}, 500, Phaser.Easing.Back.Out)
+  .to({angle: target}, 1000, Phaser.Easing.Back.Out)
   .start();
 };
 
