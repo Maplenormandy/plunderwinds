@@ -74,7 +74,7 @@ var p3 = {
   ]
 };
 
-var p3 = {
+var p4 = {
   flavorText: 'You meet the King of Pirates...',
   outcomes: [
     {
@@ -96,13 +96,13 @@ var p3 = {
 };
 
 pirateResults[1] = p1;
-pirateResults[2] = p1;
-pirateResults[3] = p1;
-pirateResults[4] = p1;
-pirateResults[5] = p2;
-pirateResults[6] = p2;
-pirateResults[7] = p2;
-pirateResults[8] = p2;
+pirateResults[2] = p2;
+pirateResults[3] = p2;
+pirateResults[4] = p2;
+pirateResults[5] = p3;
+pirateResults[6] = p3;
+pirateResults[7] = p3;
+pirateResults[8] = p4;
 
 Pirates.prototype = new Encounter();
 Pirates.prototype.constructor = Pirates;

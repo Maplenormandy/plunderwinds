@@ -57,6 +57,7 @@ Play.prototype = {
     this.wind = this.encounterManager.rnd.between(1,4) * 2;
     this.sidePanel.compass.pointTo(this.wind);
   },
+
   movePlayer: function(dir) {
     // Called when the player clicks on a nearby tile. Advance to the next turn,
     // and wait for player input.
@@ -86,12 +87,13 @@ Play.prototype = {
           }
         })(this)
         );
+
       this.sidePanel.update();
     }
   },
   
   /**
-   * A callback function to begin the encounter phase. Calls showResult
+   * A callback function to begin the encounter phase
    *
    * @param {Play} me this changes based on who calls the function, so hack in
    * a closure.
@@ -104,21 +106,9 @@ Play.prototype = {
       var tile = me.grid.tiles[me.ship.gridX][me.ship.gridY];
       var result = encounter.getResult(tile.danger);
 
-      me.showResult(result);
+      console.log(result);
+      encounterPopup(me.game, encounter, result, this);
     }
-  },
-
-  /**
-   * Shows the result of the encounter, and presents the player with the choices
-   * they can make in response. Calls endEncounter
-   *
-   * @param {EncounterResult} result The result from an encounter.getResult
-   */
-  showResult: function(result) {
-    console.log(result);
-    encounterPopup(this.game, result);
-    var outcome = this.game.rnd.pick(result.outcomes);
-    this.endEncounter(outcome);
   },
 
   /**
@@ -130,13 +120,13 @@ Play.prototype = {
     console.log(outcome);
     outcome.effectFunc(this.ship, this.encounterManager);
     this.state = this.STATES.STANDBY;
-    console.log(this.state);
+    this.sidePanel.update();
   },
 
   failToMove: function(me) {
-    console.log("Fighting the wind!");
+    //console.log("Fighting the wind!");
     me.state = me.STATES.STANDBY;
-    console.log(me.state);
+    this.sidePanel.update();
   },
 
   clickListener: function() {
