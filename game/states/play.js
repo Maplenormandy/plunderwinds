@@ -123,9 +123,9 @@ Play.prototype = {
     outcome.effectFunc(this.ship, this.encounterManager);
     this.state = this.STATES.STANDBY;
     this.sidePanel.update();
-    if (this.ship.stamina <= 0) {
+    if (this.ship.stamina <= 0 || !this.ship.canMoveAnywhere()) {
       this.game.state.start('gameover', true, false, this);
-    }
+    }    
   },
 
   failToMove: function(me) {
