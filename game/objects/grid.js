@@ -72,7 +72,10 @@ Grid.prototype.updateFog = function () {
 		if ((i-shipX)*(i-shipX) + (j-shipY)*(j-shipY) < 4.1) {
 			this.tiles[i][j].revealed = true;
 			//after revealing the tile, also set the color
-			if (this.tiles[i][j].danger < 3){
+			if (this.tiles[i][j].playerTouched){
+				this.tiles[i][j].phSprite.frame = 7;
+			}
+			else if (this.tiles[i][j].danger < 3){
 				this.tiles[i][j].phSprite.frame = 1;
 			}
 			else if (this.tiles[i][j].danger < 6){

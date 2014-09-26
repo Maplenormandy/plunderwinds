@@ -32,7 +32,7 @@ var t2 = {
   outcomes: [
     {
       flavorText: 'Drink a grog!',
-      mechanicsText: '+1 treasure, discard',
+      mechanicsText: '+1 gold, remove 1 treasure',
       effectFunc: function(ship, encounterManager) {
         ship.treasure += 1;
         encounterManager.remove(Treasure);
@@ -53,7 +53,7 @@ var t3 = {
     },
     {
       flavorText: 'Sell it',
-      mechanicsText: '+1 treasure, discard',
+      mechanicsText: '+1 gold, remove 1 treasure',
       effectFunc: function(ship, encounterManager) {
         ship.treasure += 1;
         encounterManager.remove(Treasure);
@@ -67,7 +67,7 @@ var t4 = {
   outcomes: [
     {
       flavorText: 'Arr',
-      mechanicsText: 'discard',
+      mechanicsText: 'remove 1 treasure',
       effectFunc: function(ship, encounterManager) {
         encounterManager.remove(Treasure);
       }
