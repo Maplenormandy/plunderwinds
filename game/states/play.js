@@ -56,7 +56,7 @@ Play.prototype = {
     this.encounterManager.add(encounters.RoyalNavy, 3);
     this.encounterManager.add(encounters.Treasure, 10);
 
-    this.wind = this.encounterManager.rnd.between(1,4) * 2;
+    this.wind = 2;
     this.sidePanel.compass.pointTo(this.wind);
   },
 
@@ -123,8 +123,8 @@ Play.prototype = {
     outcome.effectFunc(this.ship, this.encounterManager);
     this.state = this.STATES.STANDBY;
     this.sidePanel.update();
-    if (this.ship.stamina <= 0 || !this.ship.canMoveAnywhere()) {
-      this.game.state.start('gameover', true, false, this);
+    if (this.ship.stamina <= 0 || !this.ship.canMoveAnywhere() || (this.ship.gridX == 5 && this.ship.gridY == 5)) {
+      this.endTheGame();
     }
   },
 
@@ -132,8 +132,12 @@ Play.prototype = {
     //console.log("Fighting the wind!");
     me.state = me.STATES.STANDBY;
     this.sidePanel.update();
-    if (this.ship.stamina <= 0) 
-      this.game.state.start('gameover', true, false, this);
+    if (this.ship.stamina <= 0)
+      this.endTheGame();
+  },
+
+  endTheGame: function() {
+    this.game.state.start('gameover', true, false, this);
   },
 
   clickListener: function() {
