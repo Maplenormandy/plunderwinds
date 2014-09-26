@@ -62,6 +62,10 @@ Play.prototype = {
     this.sidePanel.compass.pointTo(this.wind);
   },
 
+  update: function() {
+    this.sidePanel.compass.updateClouds();
+  },
+
   movePlayer: function(dir) {
     // Called when the player clicks on a nearby tile. Advance to the next turn,
     // and wait for player input.

@@ -16,15 +16,22 @@ var encounters = {
 function Sidepanel(play){
 
 	// reference to the game and play state
-  this.play = play;
+	this.play = play;
 	this.game = play.game;
-  this.ship = play.ship;
+	this.ship = play.ship;
 
 	/**
 		places the compass
 		200x200
 	*/
-	this.compass = new Compass(this.game, 700, 500);
+	this.compass = new Compass(this.game, this, 700, 500);
+
+	// places the background
+
+	this.background = this.game.add.graphics(600, 0);
+	this.background.beginFill(0xF1F1D4);
+	this.background.drawRect(0, 0, 200, 600);
+	this.background.endFill();
 
 	/**
 		places stamina bar, default 20 stamina
@@ -72,6 +79,8 @@ function Sidepanel(play){
 	this.encounterText[5] = this.game.add.text(775, 290, "3", encounterstyle2);
 	this.encounterText[5].anchor.setTo(1.0, 0);
 
+	this.compass.phSprite.bringToTop();
+	this.compass.arrow.bringToTop();
 }
 
 // Draw new text to reflect the ship's state.
