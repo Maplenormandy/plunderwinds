@@ -1,6 +1,7 @@
 *~
 *.swp
 *.swo
+*.ai
 
 node_modules
 bower_components
