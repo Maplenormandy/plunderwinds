@@ -52,12 +52,25 @@ Ship.prototype.constructor = Ship;
 Ship.prototype.canMove = function() {
   if (this.stamina <= 0)
     return [false, false, false, false];
+
+  // check if the target square is inside the grid and if it hasn't been touched yet
   return [
-    this.gridY > 0, 
-    this.gridX < this.grid.spritesX-1, 
-    this.gridY < this.grid.spritesX-1, 
-    this.gridX > 0
+    this.gridY > 0 && !this.grid.tiles[this.gridX][this.gridY-1].playerTouched, 
+    this.gridX < this.grid.spritesX-1 && !this.grid.tiles[this.gridX+1][this.gridY].playerTouched, 
+    this.gridY < this.grid.spritesX-1 && !this.grid.tiles[this.gridX][this.gridY+1].playerTouched, 
+    this.gridX > 0 && !this.grid.tiles[this.gridX-1][this.gridY].playerTouched
   ];
+};
+
+/**
+ * Returns true if the exists at least one legal move 
+ *
+ * @returns {Boolean} the exists at least one legal move 
+ */
+
+Ship.prototype.canMoveAnywhere = function() {
+  var res = this.canMove();
+  return (res[0] || res[1] || res[2] || res[3]);
 };
 
 /**

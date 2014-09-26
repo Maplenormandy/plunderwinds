@@ -123,7 +123,7 @@ Play.prototype = {
     outcome.effectFunc(this.ship, this.encounterManager);
     this.state = this.STATES.STANDBY;
     this.sidePanel.update();
-    if (this.ship.stamina <= 0) {
+    if (this.ship.stamina <= 0 || !this.ship.canMoveAnywhere()) {
       this.game.state.start('gameover', true, false, this);
     }
   },
@@ -132,6 +132,8 @@ Play.prototype = {
     //console.log("Fighting the wind!");
     me.state = me.STATES.STANDBY;
     this.sidePanel.update();
+    if (this.ship.stamina <= 0) 
+      this.game.state.start('gameover', true, false, this);
   },
 
   clickListener: function() {
