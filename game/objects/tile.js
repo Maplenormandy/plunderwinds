@@ -27,11 +27,11 @@ function Tile(play, grid, x, y, key) {
 
   //should probably be implemented as a transparent sprite instead,
   //but this works for testing
-  this.dangerText = this.game.add.text(this.x, this.y, '', 
-  	{ font: '40px Helvetica', fill: '#ffffff', align: 'center'});
-  this.dangerText.anchor.setTo(0.5);
+  //this.dangerText = this.game.add.text(this.x, this.y, '', 
+  //	{ font: '40px Helvetica', fill: '#ffffff', align: 'center'});
+  //this.dangerText.anchor.setTo(0.5);
 
-  this.danger = Math.floor((Math.random() * 8) + 1);
+  this.danger = this.play.encounterManager.rnd.between(1,8);
 
   this.revealed = false;
 }
@@ -69,14 +69,14 @@ Tile.prototype.mark = function() {
 Tile.prototype.showDanger = function() {
   // If the tile is unavailable, mark with an X for now. TODO: should be
   // graphical.
-  if (this.playerTouched)
-    this.dangerText.text = '';
-  else 
-    this.dangerText.text = this.danger.toString();
+  //if (this.playerTouched)
+  //  this.dangerText.text = '';
+  //else 
+  //  this.dangerText.text = this.danger.toString();
 };
 
 Tile.prototype.hideDanger = function() {
-	this.dangerText.text = '';
+	//this.dangerText.text = '';
 };
 
 Tile.prototype.updateDanger = function() {

@@ -36,6 +36,13 @@ Play.prototype = {
     this.state = this.STATES.STANDBY;
     this.startTime = new Date().getTime();
 
+    // Initialize encounters
+    this.encounterManager = new EncounterManager([this.startTime]);
+
+    this.encounterManager.add(encounters.Pirates, 7);
+    this.encounterManager.add(encounters.RoyalNavy, 3);
+    this.encounterManager.add(encounters.Treasure, 10);
+
     // Order is important: grid then ship then side panel
     this.grid = new Grid(this);
     this.ship = new Ship(this);
@@ -49,12 +56,7 @@ Play.prototype = {
     //   imageKey: 'encounter-image-booty'
     // });
 
-    // Initialize encounters
-    this.encounterManager = new EncounterManager([50]);
 
-    this.encounterManager.add(encounters.Pirates, 7);
-    this.encounterManager.add(encounters.RoyalNavy, 3);
-    this.encounterManager.add(encounters.Treasure, 10);
 
     this.wind = 2;
     this.sidePanel.compass.pointTo(this.wind);
