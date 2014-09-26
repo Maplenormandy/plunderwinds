@@ -45,7 +45,7 @@ var r3 = {
   outcomes: [
     {
       flavorText: 'Claim your spoils',
-      mechanicsText: '+2 stamina, +1 treasure',
+      mechanicsText: '+2 stamina, +1 gold',
       effectFunc: function(ship, encounterManager) {
         ship.stamina += 2;
         ship.treasure += 1;
