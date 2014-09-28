@@ -26,6 +26,17 @@ Play.prototype = {
     // Set the background color to pleasant beige
     this.stage.backgroundColor = "#F1F1D4";
 
+    // Load the audio files
+    //call sounds using this.sound.play(key)
+    this.sound.add('treasurefx');
+    this.sound.add('piratefx');
+    this.sound.add('navyfx');
+    this.sound.add('errorfx');
+    this.sound.add('gamebgm');
+    this.sound.stopAll();
+    this.sound.play('gamebgm',1, true);
+
+
     // The game can be in one of four states
     this.STATES = {
       STANDBY: "wait",
@@ -132,6 +143,7 @@ Play.prototype = {
     //console.log("Fighting the wind!");
     me.state = me.STATES.STANDBY;
     this.sidePanel.update();
+    this.sound.play('errorfx');
     if (this.ship.stamina <= 0) 
       this.game.state.start('gameover', true, false, this);
   },

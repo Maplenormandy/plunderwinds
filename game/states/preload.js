@@ -25,15 +25,12 @@ Preload.prototype = {
     this.load.image('compass', 'assets/compass.png');
     this.load.image('compass_arrow', 'assets/compassarrow-01.png')
     this.load.spritesheet('tiles', 'assets/tiles2-01.png', 200, 200);
-/*    this.load.image('tile0', 'assets/tile0.png');
-    this.load.image('tile1', 'assets/tile1.png');
-    this.load.image('tile2', 'assets/tile2.png');
-    this.load.image('tile3', 'assets/tile3.png');
-    this.load.image('tile4', 'assets/tile4.png');
-    this.load.image('tile5', 'assets/tile5.png');
-    this.load.image('tile6', 'assets/tile6.png');
-    this.load.image('tile7', 'assets/tile7.png');
-    this.load.image('tile8', 'assets/tile8.png');*/
+    this.load.audio('navyfx', 'assets/man_canon.mp3');
+    this.load.audio('treasurefx', 'assets/husky70__Counting_Me_Shillings.mp3');
+    this.load.audio('piratefx', 'assets/cgeffex_Ships_Bell.mp3');
+    this.load.audio('errorfx','assets/autistic-lucario__error.wav');
+    this.load.audio('loadbgm', 'assets/ZipZipper_The_Terrible_Tale.mp3');
+    this.load.audio('gamebgm', 'assets/Waterflame_Glorious_Morning.mp3');
 
     /**
       loads the fonts
@@ -47,6 +44,8 @@ Preload.prototype = {
   },
   create: function() {
     this.asset.cropEnabled = false;
+    this.sound.add('loadbgm');
+    this.sound.play('loadbgm', 1, true);
   },
   update: function() {
     if(!!this.ready) {

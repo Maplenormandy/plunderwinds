@@ -23,6 +23,9 @@ var closeEncounterPopup = function() {
 var showEncounterPopup = function(game, encounter, result, play) {
     playState = play;
 
+    game.sound.play(encounter.soundText);
+    console.log(encounter.soundText);
+
 	var popupWidth = 600;
 	var popupHeight = 400;
 
@@ -39,9 +42,7 @@ var showEncounterPopup = function(game, encounter, result, play) {
 	// should be put in the center of the screen
 	var background = game.add.sprite(400, 300, 'encounter-background');
 	background.anchor.setTo(0.5);
-	fullScreenBg.addChild(background);
-
-	
+	fullScreenBg.addChild(background);	
 
     var flavorText = game.add.text(400, 120, encounter.titleText,
         { font: '60px IM Fell English SC', fill: '#ffffff', align: 'center'});

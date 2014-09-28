@@ -11,7 +11,8 @@ var navyResults = new Array(9);
  */
 function RoyalNavy() {
   this.effectResults = navyResults;
-  this.titleText = 'Royal Navy'
+  this.titleText = 'Royal Navy';
+  this.soundText = 'navyfx';
 }
 
 var r1 = {

@@ -11,6 +11,8 @@ GameOver.prototype = {
   preload: function () {},
 
   create: function () {
+    this.sound.stopAll();
+    this.sound.play('loadbgm', 1, true);
     var style = { font: '65px Arial', fill: '#ffffff', align: 'center'};
     this.titleText = this.game.add.text(this.game.world.centerX,100, 'Game Over!', style);
     this.titleText.anchor.setTo(0.5, 0.5);

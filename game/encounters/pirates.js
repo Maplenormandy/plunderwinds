@@ -14,6 +14,7 @@ var pirateResults = new Array(9);
 function Pirates() {
   this.effectResults = pirateResults;
   this.titleText = 'Pirates';
+  this.soundText = 'piratefx';
 }
 
 var p1 = {
