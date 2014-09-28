@@ -23,6 +23,9 @@ var closeEncounterPopup = function() {
 var showEncounterPopup = function(game, encounter, result, play) {
     playState = play;
 
+    game.sound.play(encounter.soundText);
+    console.log(encounter.soundText);
+
 	var popupWidth = 600;
 	var popupHeight = 400;
 
@@ -30,18 +33,16 @@ var showEncounterPopup = function(game, encounter, result, play) {
 	// need to draw it first and then convert it to a sprite
 	var temp = game.add.graphics(0, 0);
 	temp.beginFill(0x000000, 0.6);
-	temp.drawRect(0, 0, 800, 600);
+	temp.drawRect(0, 0, 820, 620);
 	temp.endFill();
-	fullScreenBg = game.add.sprite(0, 0, temp.generateTexture());
+	fullScreenBg = game.add.sprite(-20, -20, temp.generateTexture());
 	fullScreenBg.inputEnabled = true;
     temp.destroy();
 
 	// should be put in the center of the screen
 	var background = game.add.sprite(400, 300, 'encounter-background');
 	background.anchor.setTo(0.5);
-	fullScreenBg.addChild(background);
-
-	
+	fullScreenBg.addChild(background);	
 
     var flavorText = game.add.text(400, 120, encounter.titleText,
         { font: '60px IM Fell English SC', fill: '#ffffff', align: 'center'});

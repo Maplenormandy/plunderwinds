@@ -26,6 +26,17 @@ Play.prototype = {
     // Set the background color to pleasant beige
     this.stage.backgroundColor = "#F1F1D4";
 
+    // Load the audio files
+    //call sounds using this.sound.play(key)
+    this.sound.add('treasurefx');
+    this.sound.add('piratefx');
+    this.sound.add('navyfx');
+    this.sound.add('errorfx');
+    this.sound.add('gamebgm');
+    this.sound.stopAll();
+    this.sound.play('gamebgm',1, true);
+
+
     // The game can be in one of four states
     this.STATES = {
       STANDBY: "wait",
@@ -35,6 +46,13 @@ Play.prototype = {
     };
     this.state = this.STATES.STANDBY;
     this.startTime = new Date().getTime();
+
+    // Initialize encounters
+    this.encounterManager = new EncounterManager([this.startTime]);
+
+    this.encounterManager.add(encounters.Pirates, 7);
+    this.encounterManager.add(encounters.RoyalNavy, 3);
+    this.encounterManager.add(encounters.Treasure, 10);
 
     // Order is important: grid then ship then side panel
     this.grid = new Grid(this);
@@ -49,15 +67,14 @@ Play.prototype = {
     //   imageKey: 'encounter-image-booty'
     // });
 
-    // Initialize encounters
-    this.encounterManager = new EncounterManager([50]);
 
-    this.encounterManager.add(encounters.Pirates, 7);
-    this.encounterManager.add(encounters.RoyalNavy, 3);
-    this.encounterManager.add(encounters.Treasure, 10);
 
     this.wind = 2;
     this.sidePanel.compass.pointTo(this.wind);
+  },
+
+  update: function() {
+    this.sidePanel.compass.updateClouds();
   },
 
   movePlayer: function(dir) {
@@ -80,13 +97,13 @@ Play.prototype = {
       this.ship.moveTo(dir, true,
         (function(me) {
           return function () {
-            return me.beginEncounter(me)
-          }
+            return me.beginEncounter(me);
+          };
         })(this),
         (function(me) {
           return function () {
-            return me.failToMove(me)
-          }
+            return me.failToMove(me);
+          };
         })(this)
         );
 
@@ -132,6 +149,7 @@ Play.prototype = {
     //console.log("Fighting the wind!");
     me.state = me.STATES.STANDBY;
     this.sidePanel.update();
+    this.sound.play('errorfx');
     if (this.ship.stamina <= 0)
       this.endTheGame();
   },

@@ -11,7 +11,8 @@ var treasureResults = new Array(9);
  */
 function Treasure() {
   this.effectResults = treasureResults;
-  this.titleText = 'Treasure'
+  this.titleText = 'Treasure';
+  this.soundText = 'treasurefx';
 }
 
 var t1 = {
