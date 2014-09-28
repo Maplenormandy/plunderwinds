@@ -20,6 +20,7 @@ function Tile(play, grid, x, y, key) {
   Sprite.call(this, this.game, x, y, key);
 /*  this.phSprite.crop(new Phaser.Rectangle(0, 0, 100, 100), true);*/
   this.phSprite.inputEnabled = true;
+  this.phSprite.events.onInputOver.add(this.onOver, this);
   this.phSprite.events.onInputDown.add(this.onClick, this);
   this.phSprite.anchor.setTo(0.5, 0.5);
   this.phSprite.scale.setTo(0.5, 0.5);
@@ -63,9 +64,32 @@ Tile.prototype.onClick = function() {
   this.play.movePlayer(dir);
 };
 
+Tile.prototype.onOver = function() {
+  var newText = ""
+  var gridPos = this.grid.getTileCoords(this.phSprite.x, this.phSprite.y); 
+  if (this.playerTouched == true) {
+    newText = "The Royal Navy knows you have been here, so you can not return.";
+  } else if (gridPos.x == 5 && gridPos.y == 5) {
+    newText = "Your home base, you have return here at the end.";
+  } else if (this.revealed == false) {
+    newText = "Your scouts can not see that far ahead, get closer to reveal the tile.";
+  } else if (this.danger < 3) {
+    newText = "Red tiles are the most dangerous. You will face battles that drain " +
+      "stamina but let you control what remains in the deck.";
+  } else if (this.danger < 6) { 
+    newText = "Blue tiles are neutral. You can rest and regain stamina here.";
+  } else if (this.danger < 8) {
+    newText = "Green tiles have the best rewards. Treasure abounds here, but your actions " +
+      "will attract the attention of pirates and the royal navy, adding them to the deck!";
+  } else {
+    newText = "Purple tiles are a gamble.";
+  }
+  this.play.sidePanel.spyDescriptionText.text = newText;
+};
+
 Tile.prototype.mark = function() {
   this.playerTouched = true;
-}
+};
 
 Tile.prototype.showDanger = function() {
   // If the tile is unavailable, mark with an X for now. TODO: should be

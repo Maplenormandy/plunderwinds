@@ -101,10 +101,10 @@ var p4 = {
 };
 
 pirateResults[1] = p1;
-pirateResults[2] = p2;
+pirateResults[2] = p1;
 pirateResults[3] = p2;
 pirateResults[4] = p2;
-pirateResults[5] = p3;
+pirateResults[5] = p2;
 pirateResults[6] = p3;
 pirateResults[7] = p3;
 pirateResults[8] = p4;

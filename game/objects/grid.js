@@ -92,7 +92,6 @@ Grid.prototype.updateFog = function () {
 		}
 
 		if ((i == (this.spritesX - 1)) && (j == (this.spritesX - 1))){
-			console.log("ground");
 			this.tiles[i][j].phSprite.frame = 8;
 		}
 

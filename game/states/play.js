@@ -118,6 +118,9 @@ Play.prototype = {
    * a closure.
    */
   beginEncounter: function(me) {
+    if (me.ship.gridX == 5 && this.ship.gridY == 5) {
+      me.endTheGame();
+    }
     if (me.state == me.STATES.MOVING) {
       me.state = me.STATES.ENCOUNTER;
       // choose random encounter and remove it from the deck
@@ -125,7 +128,6 @@ Play.prototype = {
       var tile = me.grid.tiles[me.ship.gridX][me.ship.gridY];
       var result = encounter.getResult(tile.danger);
 
-      console.log(result);
       encounterPopup(me.game, encounter, result, this);
     }
   },
@@ -136,7 +138,6 @@ Play.prototype = {
    * @param {Outcome} outcome The player's decision from result.outcomes
    */
   endEncounter: function(outcome) {
-    console.log(outcome);
     outcome.effectFunc(this.ship, this.encounterManager);
     this.state = this.STATES.STANDBY;
     this.sidePanel.update();

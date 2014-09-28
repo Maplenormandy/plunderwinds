@@ -56,25 +56,39 @@ function Sidepanel(play){
 	*/
 	var encounterwords = "deck";
 	var encounterstyle = {font: "25px IM Fell English SC", fill: '#000000', align: "center"};
-	this.encounterText2 = this.game.add.text(700, 190, encounterwords, encounterstyle);
+	this.encounterText2 = this.game.add.text(700, 100, encounterwords, encounterstyle);
 	this.encounterText2.anchor.setTo(0.5, 0);
 
 	var encounterstyle2 = {font: "20px IM Fell English SC", fill: '#000000', align: "left"};
 	var encounterstyle3 = {font: "20px IM Fell English SC", fill: '#000000', align: "right"};
 	this.encounterText = [0, 0, 0, 0, 0, 0];
-	this.encounterText[0] = this.game.add.text(625, 250, "pirates", encounterstyle2);
-	this.encounterText[1] = this.game.add.text(625, 270, "treasure", encounterstyle2);
-	this.encounterText[2] = this.game.add.text(625, 290, "royal navy", encounterstyle2);
+	this.encounterText[0] = this.game.add.text(625, 130, "pirates", encounterstyle2);
+	this.encounterText[1] = this.game.add.text(625, 150, "treasure", encounterstyle2);
+	this.encounterText[2] = this.game.add.text(625, 170, "royal navy", encounterstyle2);
 
-	this.encounterText[3] = this.game.add.text(775, 250, "7", encounterstyle2);
+	this.encounterText[3] = this.game.add.text(775, 130, "7", encounterstyle2);
 	this.encounterText[3].anchor.setTo(1.0, 0);
-	this.encounterText[4] = this.game.add.text(775, 270, "10", encounterstyle2);
+	this.encounterText[4] = this.game.add.text(775, 150, "10", encounterstyle2);
 	this.encounterText[4].anchor.setTo(1.0, 0);
-	this.encounterText[5] = this.game.add.text(775, 290, "3", encounterstyle2);
+	this.encounterText[5] = this.game.add.text(775, 170, "3", encounterstyle2);
 	this.encounterText[5].anchor.setTo(1.0, 0);
 
 	this.compass.phSprite.bringToTop();
 	this.compass.arrow.bringToTop();
+
+	/**
+	 Spyglass (i.e. tile help text)
+	 */
+	var spyglassstyle = {font: "25px IM Fell English SC", fill: '#000000', align: "center"};
+	this.spyglassText = this.game.add.text(700, 220, "spyglass", spyglassstyle);
+	this.spyglassText.anchor.setTo(0.5, 0);
+
+	var spydescripttext = "Hover over a tile to see more details!";
+	var spydescriptstyle = {font: "16px IM Fell English SC", fill: '#000000', align: "center",
+		wordWrap: true, wordWrapWidth: 180};
+	this.spyDescriptionText = this.game.add.text(700, 250, spydescripttext, spydescriptstyle);
+	this.spyDescriptionText.anchor.setTo(0.5, 0);
+
 }
 
 // Draw new text to reflect the ship's state.

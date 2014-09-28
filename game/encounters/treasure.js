@@ -85,7 +85,7 @@ treasureResults[2] = t1;
 treasureResults[3] = t2;
 treasureResults[4] = t2;
 treasureResults[5] = t2;
-treasureResults[6] = t2;
+treasureResults[6] = t3;
 treasureResults[7] = t3;
 treasureResults[8] = t4;
 
