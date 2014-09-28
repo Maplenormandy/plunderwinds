@@ -21,6 +21,8 @@ var closeEncounterPopup = function() {
  * @return {Outcome} The chosen outcome for the encounter
  */
 var showEncounterPopup = function(game, encounter, result, play) {
+
+    console.log(result)
     playState = play;
 
     game.sound.play(encounter.soundText);
@@ -40,18 +42,19 @@ var showEncounterPopup = function(game, encounter, result, play) {
     temp.destroy();
 
 	// should be put in the center of the screen
-	var background = game.add.sprite(400, 300, 'encounter-background');
-	background.anchor.setTo(0.5);
+	var background = game.add.sprite(320, 300, 'encounter-background');
+    background.scale.setTo(0.72, 0.86);
+    background.anchor.setTo(0.5, 0.5);
 	fullScreenBg.addChild(background);	
 
-    var flavorText = game.add.text(400, 120, encounter.titleText,
+    var flavorText = game.add.text(320, 120, encounter.titleText,
         { font: '60px IM Fell English SC', fill: '#ffffff', align: 'center'});
     flavorText.anchor.setTo(0.5, 0);
     flavorText.wordWrapWidth = popupWidth - 40;
     flavorText.wordWrap = true;
     fullScreenBg.addChild(flavorText);
 
-    var flavorText = game.add.text(400, 190, result.flavorText,
+    var flavorText = game.add.text(320, 190, result.flavorText,
     	{ font: '36px IM Fell English SC', fill: '#ffffff', align: 'center'});
     flavorText.anchor.setTo(0.5, 0);
     flavorText.wordWrapWidth = popupWidth - 40;
@@ -61,7 +64,7 @@ var showEncounterPopup = function(game, encounter, result, play) {
     for (var i in result.outcomes) {
         var outcome = result.outcomes[i];
 
-        var descriptionText = game.add.text(400, 380+i*80, outcome.flavorText,
+        var descriptionText = game.add.text(320, 380+i*80, outcome.flavorText,
         { font: '36px IM Fell English SC', fill: '#ffffff', align: 'center'});
         descriptionText.anchor.setTo(0.5, 0);
         descriptionText.wordWrapWidth = popupWidth - 40;
@@ -74,7 +77,7 @@ var showEncounterPopup = function(game, encounter, result, play) {
 
         fullScreenBg.addChild(descriptionText);
 
-        var descriptionText = game.add.text(400, 416+i*80, '(' + outcome.mechanicsText + ')',
+        var descriptionText = game.add.text(320, 416+i*80, '(' + outcome.mechanicsText + ')',
         { font: '24px IM Fell English SC', fill: '#ffffff', align: 'center'});
         descriptionText.anchor.setTo(0.5, 0);
         descriptionText.wordWrapWidth = popupWidth - 40;
@@ -90,8 +93,10 @@ var showEncounterPopup = function(game, encounter, result, play) {
     
 
     // the image
-    var image = game.add.sprite(400, 300 - 120, result.imageKey);
-    image.anchor.setTo(0.5, 0);
+    var image = game.add.sprite(320, 300+20, "icons");
+    image.scale.setTo(0.8, 0.8);
+    image.anchor.setTo(0.5, 0.5);
+    image.frame = result.frame;
     fullScreenBg.addChild(image);
 };
 

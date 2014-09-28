@@ -17,6 +17,7 @@ function RoyalNavy() {
 
 var r1 = {
   flavorText: 'Defeated!',
+  frame: 6,
   outcomes: [
     {
       flavorText: 'Limp away',
@@ -30,6 +31,7 @@ var r1 = {
 
 var r2 = {
   flavorText: 'They didn\'t see you!',
+  frame: 7,
   outcomes: [
     {
       flavorText: 'Sneak by',
@@ -43,6 +45,7 @@ var r2 = {
 
 var r3 = {
   flavorText: 'Resounding victory, you beat the navy!',
+  frame: 8,
   outcomes: [
     {
       flavorText: 'Claim your spoils',
@@ -57,6 +60,7 @@ var r3 = {
 
 var r4 = {
   flavorText: 'Resounding victory, you beat the navy!',
+  frame: 8,
   outcomes: [
     {
       flavorText: 'Claim your spoils',

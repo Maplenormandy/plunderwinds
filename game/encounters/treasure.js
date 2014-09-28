@@ -17,6 +17,7 @@ function Treasure() {
 
 var t1 = {
   flavorText: 'False Lead!',
+  frame: 5,
   outcomes: [
     {
       flavorText: 'Arr',
@@ -30,6 +31,7 @@ var t1 = {
 
 var t2 = {
   flavorText: 'Booty!',
+  frame: 3,
   outcomes: [
     {
       flavorText: 'Drink a grog!',
@@ -44,6 +46,7 @@ var t2 = {
 
 var t3 = {
   flavorText: 'Ancient Treasure!',
+  frame: 4,
   outcomes: [
     {
       flavorText: 'Use it',
@@ -65,6 +68,7 @@ var t3 = {
 
 var t4 = {
   flavorText: 'Treasure was destroyed in a skirmish...',
+  frame: 9,
   outcomes: [
     {
       flavorText: 'Arr',

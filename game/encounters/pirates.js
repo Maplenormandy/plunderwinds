@@ -19,6 +19,7 @@ function Pirates() {
 
 var p1 = {
   flavorText: 'Angry pirates attack, but you win the battle!',
+  frame: 2,
   outcomes: [
     {
       flavorText: 'Plunder their ship',
@@ -42,6 +43,7 @@ var p1 = {
 
 var p2 = {
   flavorText: 'Angry pirates attack and win!',
+  frame: 0,
   outcomes: [
     {
       flavorText: 'Limp away',
@@ -56,6 +58,7 @@ var p2 = {
 
 var p3 = {
   flavorText: 'Friendly pirates!',
+  frame: 1,
   outcomes: [
     {
       flavorText: 'Wave hello and sail away',
@@ -77,6 +80,7 @@ var p3 = {
 
 var p4 = {
   flavorText: 'You meet the King of Pirates...',
+  frame: 10,
   outcomes: [
     {
       flavorText: 'Offer tribute',

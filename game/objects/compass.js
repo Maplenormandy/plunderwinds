@@ -25,7 +25,7 @@ function Compass(game, panel, x, y) {
   // the number of clouds on the screen
   this.cloudNum = 10;
   this.cloudAlpha = 0.5;
-  this.cloudScale = 0.2;
+  this.cloudScale = {x: 0.5, y: 0.27};
   this.windV = [0, 0];
   this.targetWindV = [0, 0];
 
@@ -46,9 +46,10 @@ Compass.prototype.setupClouds = function() {
     var point = randomSample(dist, 600, 600);
     // if (typeof point === 'undefined') continue;
     dist.push(point);
-    var cloud = this.game.add.sprite(point[0], point[1], 'pirate');
+    var cloud = this.game.add.sprite(point[0], point[1], 'icons');
+    cloud.frame = 11;
     cloud.anchor.setTo(0.5);
-    cloud.scale.setTo(this.cloudScale, this.cloudScale);
+    cloud.scale.setTo(this.cloudScale.x, this.cloudScale.y);
     cloud.alpha = this.cloudAlpha;
     this.clouds.push(cloud);
   }
