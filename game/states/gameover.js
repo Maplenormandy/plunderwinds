@@ -16,11 +16,26 @@ GameOver.prototype = {
   create: function () {
     this.sound.stopAll();
     this.sound.play('loadbgm', 1, true);
-    var style = { font: '65px Arial', fill: '#ffffff', align: 'center'};
+
+    var temp = this.game.add.graphics(0, 0);
+    temp.beginFill(0x000000, 0.6);
+    temp.drawRect(0, 0, 820, 620);
+    temp.endFill();
+    var fullScreenBg = this.game.add.sprite(-20, -20, temp.generateTexture());
+    fullScreenBg.inputEnabled = true;
+      temp.destroy();
+
+    // should be put in the center of the screen
+    var background = this.game.add.sprite(420, 320, 'encounter-background');
+    background.anchor.setTo(0.5, 0.5);
+    fullScreenBg.addChild(background); 
+
+    var style = { font: '65px IM Fell English SC', fill: '#ffffff', align: 'center'};
     this.titleText = this.game.add.text(this.game.world.centerX,100, 'Game Over!', style);
     this.titleText.anchor.setTo(0.5, 0.5);
 
-    this.game.stage.backgroundColor = '#000';
+
+    //this.game.stage.backgroundColor = '#000';
 
     var winString = '';
 
@@ -33,11 +48,35 @@ GameOver.prototype = {
       }
     }
 
-    this.congratsText = this.game.add.text(this.game.world.centerX, 200, winString, { font: '32px Arial', fill: '#ffffff', align: 'center'});
+    this.congratsText = this.game.add.text(this.game.world.centerX, 200, winString, { font: '32px IM Fell English SC', fill: '#ffffff', align: 'center'});
     this.congratsText.anchor.setTo(0.5, 0.5);
 
-    this.instructionText = this.game.add.text(this.game.world.centerX, 300, 'Click To Play Again', { font: '16px Arial', fill: '#ffffff', align: 'center'});
+    this.instructionText = this.game.add.text(this.game.world.centerX, 525, 'Click To Play Again', { font: '16px IM Fell English SC', fill: '#ffffff', align: 'center'});
     this.instructionText.anchor.setTo(0.5, 0.5);
+
+    var ranking = "Scum";
+    var rankFrame = 0;
+    if (this.score > 9) {
+      ranking = "Pirate King";
+      rankFrame = 3;
+    }
+    else if (this.score > 7) {
+      ranking = "First Mate";
+      rankFrame = 2;
+    }
+    else if (this.score > 2) {
+      ranking = "Deckhand";
+      rankFrame = 1;
+    }
+    
+    this.rankText = this.game.add.text(this.game.world.centerX,300, 'You are now ranked as '+ ranking +'!', { font: '32px IM Fell English SC', fill: '#ffffff', align: 'center'});
+    this.rankText.anchor.setTo(0.5, 0.5);
+
+    var image = this.game.add.sprite(420, 435, "ranks");
+    image.scale.setTo(0.9, 0.9);
+    image.anchor.setTo(0.5, 0.5);
+    image.frame = rankFrame;
+    fullScreenBg.addChild(image);
   },
 
   update: function () {
