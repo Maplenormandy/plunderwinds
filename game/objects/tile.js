@@ -41,6 +41,7 @@ Tile.prototype = new Sprite();
 Tile.prototype.constructor = Tile;
 
 Tile.prototype.onClick = function() {
+  if (this.play.state !== this.play.STATES.STANDBY) { return; }
   // where is this tile relative to the player? only adjacent tiles count.
   var gridPos = this.grid.getTileCoords(this.phSprite.x, this.phSprite.y); 
   var dx = gridPos.x - this.grid.ship.gridX;
