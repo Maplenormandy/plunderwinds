@@ -64,31 +64,50 @@ var showEncounterPopup = function(game, encounter, result, play) {
     for (var i in result.outcomes) {
         var outcome = result.outcomes[i];
 
-        var descriptionText = game.add.text(320, 380+i*80, outcome.flavorText,
+        var descriptionTexts = {};
+
+        descriptionTexts.a = game.add.text(320, 380+i*80, outcome.flavorText,
         { font: '36px IM Fell English SC', fill: '#ffffff', align: 'center'});
-        descriptionText.anchor.setTo(0.5, 0);
-        descriptionText.wordWrapWidth = popupWidth - 40;
-        descriptionText.wordWrap = true;
+        descriptionTexts.a.anchor.setTo(0.5, 0);
+        descriptionTexts.a.wordWrapWidth = popupWidth - 40;
+        descriptionTexts.a.wordWrap = true;
 
-        descriptionText.inputEnabled = true;
-        descriptionText.input.priorityID = 1;
-        descriptionText.input.useHandCursor = true;
-        descriptionText.events.onInputDown.add(closeEncounterPopup, outcome);
+        descriptionTexts.a.inputEnabled = true;
+        descriptionTexts.a.input.priorityID = 1;
+        descriptionTexts.a.input.useHandCursor = true;
+        descriptionTexts.a.events.onInputDown.add(closeEncounterPopup, outcome);
 
-        fullScreenBg.addChild(descriptionText);
+        fullScreenBg.addChild(descriptionTexts.a);
 
-        var descriptionText = game.add.text(320, 416+i*80, '(' + outcome.mechanicsText + ')',
+        descriptionTexts.b = game.add.text(320, 416+i*80, '(' + outcome.mechanicsText + ')',
         { font: '24px IM Fell English SC', fill: '#ffffff', align: 'center'});
-        descriptionText.anchor.setTo(0.5, 0);
-        descriptionText.wordWrapWidth = popupWidth - 40;
-        descriptionText.wordWrap = true;
+        descriptionTexts.b.anchor.setTo(0.5, 0);
+        descriptionTexts.b.wordWrapWidth = popupWidth - 40;
+        descriptionTexts.b.wordWrap = true;
 
-        descriptionText.inputEnabled = true;
-        descriptionText.input.priorityID = 1;
-        descriptionText.input.useHandCursor = true;
-        descriptionText.events.onInputDown.add(closeEncounterPopup, outcome);
+        descriptionTexts.b.inputEnabled = true;
+        descriptionTexts.b.input.priorityID = 1;
+        descriptionTexts.b.input.useHandCursor = true;
+        descriptionTexts.b.events.onInputDown.add(closeEncounterPopup, outcome);
 
-        fullScreenBg.addChild(descriptionText);
+        fullScreenBg.addChild(descriptionTexts.b);
+
+        descriptionTexts.a.events.onInputOver.add(function() {
+            this.a.fill = '#ffff00';
+            this.b.fill = '#ffff00';
+        }, descriptionTexts);
+        descriptionTexts.a.events.onInputOut.add(function() {
+            this.a.fill = '#ffffff';
+            this.b.fill = '#ffffff';
+        }, descriptionTexts);
+        descriptionTexts.b.events.onInputOver.add(function() {
+            this.a.fill = '#ffff00';
+            this.b.fill = '#ffff00';
+        }, descriptionTexts);
+        descriptionTexts.b.events.onInputOut.add(function() {
+            this.a.fill = '#ffffff';
+            this.b.fill = '#ffffff';
+        }, descriptionTexts);
     }
     
 

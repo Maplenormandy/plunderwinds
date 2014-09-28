@@ -16,7 +16,7 @@ GameOver.prototype = {
   create: function () {
     this.sound.stopAll();
     this.sound.play('loadbgm', 1, true);
-    var style = { font: '65px Arial', fill: '#ffffff', align: 'center'};
+    var style = { font: '65px IM Fell English SC', fill: '#ffffff', align: 'center'};
     this.titleText = this.game.add.text(this.game.world.centerX,100, 'Game Over!', style);
     this.titleText.anchor.setTo(0.5, 0.5);
 
@@ -33,10 +33,10 @@ GameOver.prototype = {
       }
     }
 
-    this.congratsText = this.game.add.text(this.game.world.centerX, 200, winString, { font: '32px Arial', fill: '#ffffff', align: 'center'});
+    this.congratsText = this.game.add.text(this.game.world.centerX, 200, winString, { font: '32px IM Fell English SC', fill: '#ffffff', align: 'center'});
     this.congratsText.anchor.setTo(0.5, 0.5);
 
-    this.instructionText = this.game.add.text(this.game.world.centerX, 300, 'Click To Play Again', { font: '16px Arial', fill: '#ffffff', align: 'center'});
+    this.instructionText = this.game.add.text(this.game.world.centerX, 300, 'Click To Play Again', { font: '16px IM Fell English SC', fill: '#ffffff', align: 'center'});
     this.instructionText.anchor.setTo(0.5, 0.5);
   },
 

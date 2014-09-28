@@ -38,7 +38,7 @@ function Sidepanel(play){
 	*/ 
 	var stamwords = "stamina \n " + this.ship.stamina;
 	var stamstyle = {font: "25px IM Fell English SC", fill: '#000000', align: "center"};
-	this.stamtext = this.game.add.text(650, 325, stamwords, stamstyle);
+	this.stamtext = this.game.add.text(650, 25, stamwords, stamstyle);
 	this.stamtext.anchor.setTo(0.5, 0);
 
 	/**
@@ -46,23 +46,17 @@ function Sidepanel(play){
 	*/
 	var goldwords = "gold \n 0";
 	var goldstyle = {font: "25px IM Fell English SC", fill: '#000000', align: "center"};
-	this.goldtext = this.game.add.text(750, 325, goldwords, goldstyle);
+	this.goldtext = this.game.add.text(750, 25, goldwords, goldstyle);
 	this.goldtext.anchor.setTo(0.5, 0);
 
-	/**
-		places options text
-	*/
-	var optionswords = "options";
-	var optionsstyle = {font: "25px IM Fell English SC", fill: '#000000', align: "center"};
-	this.optionstext = this.game.add.text(700, 25, optionswords, optionsstyle);
-	this.optionstext.anchor.setTo(0.5, 0);
+
 
 	/**
 	  places encounters remaining
 	*/
 	var encounterwords = "deck";
 	var encounterstyle = {font: "25px IM Fell English SC", fill: '#000000', align: "center"};
-	this.encounterText2 = this.game.add.text(700, 220, encounterwords, encounterstyle);
+	this.encounterText2 = this.game.add.text(700, 190, encounterwords, encounterstyle);
 	this.encounterText2.anchor.setTo(0.5, 0);
 
 	var encounterstyle2 = {font: "20px IM Fell English SC", fill: '#000000', align: "left"};
