@@ -93,7 +93,7 @@ var showEncounterPopup = function(game, encounter, result, play) {
     
 
     // the image
-    var image = game.add.sprite(320, 300+20, "icons");
+    var image = game.add.sprite(320, 320, "icons");
     image.scale.setTo(0.8, 0.8);
     image.anchor.setTo(0.5, 0.5);
     image.frame = result.frame;

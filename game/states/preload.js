@@ -29,6 +29,7 @@ Preload.prototype = {
     this.load.spritesheet('tiles', 'assets/tiles3-01.png', 200, 200);
     this.load.spritesheet('ship', 'assets/shipv2-100x100.png', 100, 100);
     this.load.spritesheet('icons', 'assets/icons.png', 200, 200)
+    this.load.spritesheet('ranks', 'assets/ranks.png', 200, 200)
     this.load.audio('navyfx', 'assets/man_canon.mp3');
     this.load.audio('treasurefx', 'assets/husky70__Counting_Me_Shillings.mp3');
     this.load.audio('piratefx', 'assets/cgeffex_Ships_Bell.mp3');
