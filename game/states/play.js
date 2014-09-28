@@ -47,6 +47,13 @@ Play.prototype = {
     this.state = this.STATES.STANDBY;
     this.startTime = new Date().getTime();
 
+    // Initialize encounters
+    this.encounterManager = new EncounterManager([this.startTime]);
+
+    this.encounterManager.add(encounters.Pirates, 7);
+    this.encounterManager.add(encounters.RoyalNavy, 3);
+    this.encounterManager.add(encounters.Treasure, 10);
+
     // Order is important: grid then ship then side panel
     this.grid = new Grid(this);
     this.ship = new Ship(this);
@@ -60,15 +67,14 @@ Play.prototype = {
     //   imageKey: 'encounter-image-booty'
     // });
 
-    // Initialize encounters
-    this.encounterManager = new EncounterManager([50]);
 
-    this.encounterManager.add(encounters.Pirates, 7);
-    this.encounterManager.add(encounters.RoyalNavy, 3);
-    this.encounterManager.add(encounters.Treasure, 10);
 
-    this.wind = this.encounterManager.rnd.between(1,4) * 2;
+    this.wind = 2;
     this.sidePanel.compass.pointTo(this.wind);
+  },
+
+  update: function() {
+    this.sidePanel.compass.updateClouds();
   },
 
   movePlayer: function(dir) {
@@ -134,8 +140,8 @@ Play.prototype = {
     outcome.effectFunc(this.ship, this.encounterManager);
     this.state = this.STATES.STANDBY;
     this.sidePanel.update();
-    if (this.ship.stamina <= 0 || !this.ship.canMoveAnywhere()) {
-      this.game.state.start('gameover', true, false, this);
+    if (this.ship.stamina <= 0 || !this.ship.canMoveAnywhere() || (this.ship.gridX == 5 && this.ship.gridY == 5)) {
+      this.endTheGame();
     }
   },
 
@@ -144,8 +150,12 @@ Play.prototype = {
     me.state = me.STATES.STANDBY;
     this.sidePanel.update();
     this.sound.play('errorfx');
-    if (this.ship.stamina <= 0) 
-      this.game.state.start('gameover', true, false, this);
+    if (this.ship.stamina <= 0)
+      this.endTheGame();
+  },
+
+  endTheGame: function() {
+    this.game.state.start('gameover', true, false, this);
   },
 
   clickListener: function() {

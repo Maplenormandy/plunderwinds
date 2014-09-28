@@ -79,7 +79,7 @@ Grid.prototype.updateFog = function () {
 				this.tiles[i][j].phSprite.frame = 1;
 			}
 			else if (this.tiles[i][j].danger < 6){
-				this.tiles[i][j].phSprite.frame = 3;
+				this.tiles[i][j].phSprite.frame = 5;
 			}
 			else if (this.tiles[i][j].danger < 8){
 				this.tiles[i][j].phSprite.frame = 4;

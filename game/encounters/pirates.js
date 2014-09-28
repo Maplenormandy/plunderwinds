@@ -22,7 +22,7 @@ var p1 = {
   outcomes: [
     {
       flavorText: 'Plunder their ship',
-      mechanicsText: '-1 stamina, +1 treasure, discard',
+      mechanicsText: '-1 stamina, +1 gold, remove 1 pirate',
       effectFunc: function(ship, encounterManager) {
         ship.stamina -= 1;
         ship.treasure += 1;
@@ -31,7 +31,7 @@ var p1 = {
     },
     {
       flavorText: 'Assert dominance over the seas',
-      mechanicsText: '-2 stamina, discard 2 pirates',
+      mechanicsText: '-2 stamina, remove 2 pirates',
       effectFunc: function(ship, encounterManager) {
         ship.stamina -= 2;
         encounterManager.remove(Pirates, 2);
@@ -45,7 +45,7 @@ var p2 = {
   outcomes: [
     {
       flavorText: 'Limp away',
-      mechanicsText: '-1 stamina, discard',
+      mechanicsText: '-1 stamina, remove 1 pirate',
       effectFunc: function(ship, encounterManager) {
         ship.stamina -= 1;
         encounterManager.remove(Pirates);
@@ -66,7 +66,7 @@ var p3 = {
     },
     {
       flavorText: 'Engage!',
-      mechanicsText: '-1 stamina, discard',
+      mechanicsText: '-1 stamina, remove 1 pirate',
       effectFunc: function(ship, encounterManager) {
         ship.stamina -= 1;
         encounterManager.remove(Pirates);
@@ -80,7 +80,7 @@ var p4 = {
   outcomes: [
     {
       flavorText: 'Offer tribute',
-      mechanicsText: '-1 treasure, discard',
+      mechanicsText: '-1 gold, remove 1 pirate',
       effectFunc: function(ship, encounterManager) {
         ship.treasure -= 1;
         encounterManager.remove(Pirates);

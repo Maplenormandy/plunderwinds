@@ -28,11 +28,11 @@ function Ship(play) {
   this.treasure = 0;
 
   // should not be hardcoded
-  this.gridX = 2;
-  this.gridY = 2;
+  this.gridX = 1;
+  this.gridY = 0;
 
   // init position without animation
-  this.moveTo(1, false);
+  this.moveTo(3, false);
   //this.moveTo(3, false);
 
   //this.moveTo(1, false);
