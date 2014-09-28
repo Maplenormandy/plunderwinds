@@ -13,14 +13,15 @@ Menu.prototype = {
   },
   create: function() {
     // This is boilerplate code.
-    var style = { font: '65px IM Fell English SC', fill: '#ffffff', align: 'center'};
-    this.sprite = this.game.add.sprite(this.game.world.centerX, 138, 'pirate');
+    var style = { font: '50px IM Fell English SC', fill: '#ffffff', align: 'center'};
+    this.sprite = this.game.add.sprite(this.game.world.centerX, 175, 'pirate');
+    this.sprite.scale.setTo(0.5, 0.5);
     this.sprite.anchor.setTo(0.5, 0.5);
 
-    this.titleText = this.game.add.text(this.game.world.centerX, 300, 'Plunder Winds', style);
+    this.titleText = this.game.add.text(this.game.world.centerX, 350, 'Instructions', style);
     this.titleText.anchor.setTo(0.5, 0.5);
 
-    this.instructionsText = this.game.add.text(this.game.world.centerX, 400, "Your goal is to maximize gold before running out of stamina.\nClick on a tile you've never been to before adjacent to your current location to move there.\nMovement opposing the wind (green arrow in lower right) is prohibited,\nand movement not with the wind costs stamina.", { font: '16px IM Fell English SC', fill: '#ffffff', align: 'center'});
+    this.instructionsText = this.game.add.text(this.game.world.centerX, 475, "You are a pirate, and your goal is to maximize gold. \nyou must also sail to the goal tile before running out of stamina.\n \nClick on an adjacent tile you've never been to before to move there.\nMovement opposing the wind (green arrow in lower right) is prohibited,\nand movement not with the wind costs stamina.\n\n green tiles are generally good, red tiles are generally bad. \npurple is really good or really bad. blue is neutral. \n \n the deck counter on the side helps you track the probabilities of each encounter.", { font: '16px IM Fell English SC', fill: '#ffffff', align: 'center'});
     this.instructionsText.anchor.setTo(0.5, 0.5);
 
     this.sprite.angle = -20;

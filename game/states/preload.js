@@ -21,7 +21,7 @@ Preload.prototype = {
 
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
     this.load.setPreloadSprite(this.asset);
-    this.load.image('pirate', 'assets/pirate.png');
+    this.load.image('pirate', 'assets/logo.png');
     this.load.image('compass', 'assets/compass.png');
     this.load.image('compass_arrow', 'assets/compassarrow-01.png')
     this.load.spritesheet('encounter-background', 'assets/encounter-background.png', 800, 600)
@@ -49,8 +49,7 @@ Preload.prototype = {
   },
   create: function() {
     this.asset.cropEnabled = false;
-    this.sound.add('loadbgm');
-    this.sound.play('loadbgm', 1, true);
+
   },
   update: function() {
     if(!!this.ready) {
