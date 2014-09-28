@@ -25,6 +25,7 @@ Preload.prototype = {
     this.load.image('compass', 'assets/compass.png');
     this.load.image('compass_arrow', 'assets/compassarrow-01.png')
     this.load.spritesheet('tiles', 'assets/tiles2-01.png', 200, 200);
+    this.load.spritesheet('ship', 'assets/shipv2-100x100.png', 100, 100);
 /*    this.load.image('tile0', 'assets/tile0.png');
     this.load.image('tile1', 'assets/tile1.png');
     this.load.image('tile2', 'assets/tile2.png');

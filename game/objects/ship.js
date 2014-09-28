@@ -23,6 +23,9 @@ function Ship(play) {
   this.grid.ship = this;
 
   Sprite.call(this, this.game, 0, 0, this.spriteTitle);
+  this.phSprite.anchor.setTo(0.5, 0.5);
+  this.phSprite.scale.setTo(0.8, 0.8);
+  this.phSprite.frame = 4;
 
   this.stamina = 20;
   this.treasure = 0;
@@ -88,10 +91,22 @@ Ship.prototype.moveTo = function(dir, anim, successCb, failCb) {
 
   var step;
   switch (dir) {
-    case this.grid.UP: step = [0, -1]; break;
-    case this.grid.RIGHT: step = [1, 0]; break;
-    case this.grid.DOWN: step = [0, 1]; break;
-    case this.grid.LEFT: step = [-1, 0]; break;
+    case this.grid.UP: 
+      this.phSprite.frame = 1;
+      step = [0, -1]; 
+      break;
+    case this.grid.RIGHT: 
+      this.phSprite.frame = 3;
+      step = [1, 0]; 
+      break;
+    case this.grid.DOWN:
+      this.phSprite.frame = 7; 
+      step = [0, 1]; 
+      break;
+    case this.grid.LEFT:
+      this.phSprite.frame = 10; 
+      step = [-1, 0]; 
+      break;
   }
 
   if (anim) {
