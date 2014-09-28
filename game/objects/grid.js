@@ -58,6 +58,7 @@ Grid.prototype.constructTilemap = function () {
 			this.phGroup.add(this.tiles[i][j].phSprite);
 		}
 	}
+
 };
 
 /** 
@@ -69,6 +70,7 @@ Grid.prototype.updateFog = function () {
 
 	for (var i = 0; i < this.spritesX; i++) for (var j = 0; j < this.spritesX; j++) {
 		// if the distance from tile to ship is small enough, reveal it
+
 		if ((i-shipX)*(i-shipX) + (j-shipY)*(j-shipY) < 4.1) {
 			this.tiles[i][j].revealed = true;
 			//after revealing the tile, also set the color
@@ -87,6 +89,11 @@ Grid.prototype.updateFog = function () {
 			else if (this.tiles[i][j].danger == 8){
 				this.tiles[i][j].phSprite.frame = 6;
 			}
+		}
+
+		if ((i == (this.spritesX - 1)) && (j == (this.spritesX - 1))){
+			console.log("ground");
+			this.tiles[i][j].phSprite.frame = 8;
 		}
 
 		// update the grid's danger score

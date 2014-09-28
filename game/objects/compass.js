@@ -1,6 +1,6 @@
 'use strict';
 var Sprite = require('./sprite');
-
+  
 /*
   A compass object
 

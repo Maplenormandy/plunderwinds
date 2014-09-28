@@ -24,7 +24,7 @@ Preload.prototype = {
     this.load.image('pirate', 'assets/pirate.png');
     this.load.image('compass', 'assets/compass.png');
     this.load.image('compass_arrow', 'assets/compassarrow-01.png')
-    this.load.spritesheet('tiles', 'assets/tiles2-01.png', 200, 200);
+    this.load.spritesheet('tiles', 'assets/tiles3-01.png', 200, 200);
     this.load.audio('navyfx', 'assets/man_canon.mp3');
     this.load.audio('treasurefx', 'assets/husky70__Counting_Me_Shillings.mp3');
     this.load.audio('piratefx', 'assets/cgeffex_Ships_Bell.mp3');
