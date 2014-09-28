@@ -69,7 +69,7 @@ GameOver.prototype = {
       rankFrame = 1;
     }
     
-    this.rankText = this.game.add.text(this.game.world.centerX,300, 'You are now ranked as '+ ranking +'!', { font: '32px Arial', fill: '#ffffff', align: 'center'});
+    this.rankText = this.game.add.text(this.game.world.centerX,300, 'You are now ranked as '+ ranking +'!', { font: '32px IM Fell English SC', fill: '#ffffff', align: 'center'});
     this.rankText.anchor.setTo(0.5, 0.5);
 
     var image = this.game.add.sprite(420, 435, "ranks");
