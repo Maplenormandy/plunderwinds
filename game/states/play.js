@@ -86,13 +86,13 @@ Play.prototype = {
       this.ship.moveTo(dir, true,
         (function(me) {
           return function () {
-            return me.beginEncounter(me)
-          }
+            return me.beginEncounter(me);
+          };
         })(this),
         (function(me) {
           return function () {
-            return me.failToMove(me)
-          }
+            return me.failToMove(me);
+          };
         })(this)
         );
 
