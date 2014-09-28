@@ -26,7 +26,6 @@ function Ship(play) {
   this.phSprite.anchor.setTo(0.5, 0.5);
   this.phSprite.scale.setTo(0.8, 0.8);
   this.phSprite.frame = 4;
-  this.animations.add 
 
   this.stamina = 20;
   this.treasure = 0;
