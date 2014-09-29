@@ -27,6 +27,16 @@ function Grid(play) {
 
 	// this.ship gets assigned by the ship constructor
 	this.ship = null;
+
+  this.game.input.keyboard.addKeyCapture([Phaser.Keyboard.UP,
+                                         Phaser.Keyboard.DOWN,
+                                         Phaser.Keyboard.LEFT,
+                                         Phaser.Keyboard.RIGHT]);
+
+  var me = this;
+  this.game.input.keyboard.onDownCallback = function (e) {
+    me.handleInput(e);
+  }
 }
 
 /**
@@ -40,6 +50,23 @@ Grid.prototype.getTileCoords = function (x, y) {
   return {
     x: Math.floor(x / this.spriteSize),
     y: Math.floor(y / this.spriteSize)
+  }
+};
+
+Grid.prototype.handleInput = function (e) {
+  switch(e.keyCode) {
+    case Phaser.Keyboard.UP:
+      this.play.movePlayer(this.UP);
+      break;
+    case Phaser.Keyboard.DOWN:
+      this.play.movePlayer(this.DOWN);
+      break;
+    case Phaser.Keyboard.LEFT:
+      this.play.movePlayer(this.LEFT);
+      break;
+    case Phaser.Keyboard.RIGHT:
+      this.play.movePlayer(this.RIGHT);
+      break;
   }
 };
 

@@ -26,8 +26,8 @@ Click to continue.",
 
 "Each section of ocean is marked with a color indicating its risk level. For\n\
 example, green waters are friendly, and have a greater chance of reward; waters\n\
-marked red are more treacherous. Your goal is a friendly port somewhere on the\n\
-edge of the map. When you reach it, the game ends, and your score is calculated\n\
+marked red are more treacherous. Your goal is a friendly port on the edge of\n\
+the map. When you reach it, the game ends, and your score is calculated\n\
 based on how much loot you have collected.\n\
 Good luck.\n\nClick to continue."
   ],

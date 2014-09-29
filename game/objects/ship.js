@@ -27,18 +27,15 @@ function Ship(play) {
   this.phSprite.scale.setTo(0.8, 0.8);
   this.phSprite.frame = 4;
 
-  this.stamina = 20;
-  this.treasure = 0;
-
   // should not be hardcoded
   this.gridX = 1;
   this.gridY = 0;
 
   // init position without animation
   this.moveTo(3, false);
-  //this.moveTo(3, false);
 
-  //this.moveTo(1, false);
+  this.stamina = 20;
+  this.treasure = 0;
 }
 
 // Inherits from Sprite
@@ -58,10 +55,14 @@ Ship.prototype.canMove = function() {
 
   // check if the target square is inside the grid and if it hasn't been touched yet
   return [
-    this.gridY > 0 && !this.grid.tiles[this.gridX][this.gridY-1].playerTouched, 
-    this.gridX < this.grid.spritesX-1 && !this.grid.tiles[this.gridX+1][this.gridY].playerTouched, 
-    this.gridY < this.grid.spritesX-1 && !this.grid.tiles[this.gridX][this.gridY+1].playerTouched, 
-    this.gridX > 0 && !this.grid.tiles[this.gridX-1][this.gridY].playerTouched
+    this.gridY > 0 && 
+      !this.grid.tiles[this.gridX][this.gridY-1].playerTouched, 
+    this.gridX < this.grid.spritesX - 1 && 
+      !this.grid.tiles[this.gridX+1][this.gridY].playerTouched, 
+    this.gridY < this.grid.spritesX - 1 && 
+      !this.grid.tiles[this.gridX][this.gridY+1].playerTouched, 
+    this.gridX > 0 && 
+      !this.grid.tiles[this.gridX-1][this.gridY].playerTouched
   ];
 };
 

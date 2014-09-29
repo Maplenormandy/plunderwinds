@@ -59,16 +59,6 @@ Play.prototype = {
     this.ship = new Ship(this);
     this.sidePanel = new Sidepanel(this);
 
-    // the result of an encounter can be shown using the encounterPopup function:
-    //
-    // encounterPopup(this.game, 
-    //   {flavorText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum condimentum arcu.',
-    //   descriptionText: 'Maecenas condimentum risus a libero posuere suscipit. +5 lorem ipsum.',
-    //   imageKey: 'encounter-image-booty'
-    // });
-
-
-
     this.wind = 2;
     this.sidePanel.compass.pointTo(this.wind);
   },
@@ -84,6 +74,7 @@ Play.prototype = {
       return;
     }
     
+    // The game must be in "standby", waiting for player input, in order to move
     if (this.state == this.STATES.STANDBY) {
       var newWind = this.encounterManager.rnd.between(1,4) * 2;
       if (Math.abs(newWind - this.wind) <= 2 || Math.abs(newWind - this.wind) == 6) {
@@ -91,7 +82,9 @@ Play.prototype = {
         this.sidePanel.compass.pointTo(this.wind);
       }
 
+      // Switch the game state to "moving"
       this.state = this.STATES.MOVING;
+
       // when the ship finishes moving, it triggers the beginEncounter callback
       // if it fails to move, call the other callback
       this.ship.moveTo(dir, true,
@@ -141,7 +134,8 @@ Play.prototype = {
     outcome.effectFunc(this.ship, this.encounterManager);
     this.state = this.STATES.STANDBY;
     this.sidePanel.update();
-    if (this.ship.stamina <= 0 || !this.ship.canMoveAnywhere() || (this.ship.gridX == 5 && this.ship.gridY == 5)) {
+    if (this.ship.stamina <= 0 || !this.ship.canMoveAnywhere() ||
+        (this.ship.gridX == 5 && this.ship.gridY == 5)) {
       this.endTheGame();
     }
   },
