@@ -54,7 +54,6 @@ GameOver.prototype = {
       url: 'http://snp.scripts.mit.edu/get_scores_plunderwinds.py',
       success: function(data) {
         var lowest_highscore = data[2][1];
-		alert("Lowest: " + lowest_highscore + " Your score: " + scoreForClosure);
         // Check if we have a winning highscore.
         if (scoreForClosure > lowest_highscore) {
           var name = prompt('You got ' + scoreForClosure + ' gold, which made the highscore table! What is your captain\'s name?');
