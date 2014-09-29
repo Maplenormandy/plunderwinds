@@ -69,7 +69,6 @@ var t3 = {
       mechanicsText: '+1 gold, add 1 pirate',
       effectFunc: function(ship, encounterManager) {
         ship.treasure += 1;
-        encounterManager.remove(Treasure);
         encounterManager.add(Pirates);
       }
     },
