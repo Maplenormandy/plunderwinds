@@ -18,18 +18,9 @@ function Pirates() {
 }
 
 var p1 = {
-  flavorText: 'Angry pirates attack, but you win the battle!',
-  frame: 2,
+  flavorText: 'Angry pirates attack!',
+  frame: 0,
   outcomes: [
-    {
-      flavorText: 'Plunder their ship',
-      mechanicsText: '-1 stamina, +1 gold, remove 1 pirate',
-      effectFunc: function(ship, encounterManager) {
-        ship.stamina -= 1;
-        ship.treasure += 1;
-        encounterManager.remove(Pirates);
-      }
-    },
     {
       flavorText: 'Assert dominance over the seas',
       mechanicsText: '-2 stamina, remove 2 pirates',
@@ -38,26 +29,18 @@ var p1 = {
         encounterManager.remove(Pirates, 2);
       }
     },
-  ]
-};
-
-var p2 = {
-  flavorText: 'Angry pirates attack and win!',
-  frame: 0,
-  outcomes: [
     {
-      flavorText: 'Limp away',
-      mechanicsText: '-1 stamina, remove 1 pirate',
+      flavorText: 'Flee',
+      mechanicsText: '-1 stamina',
       effectFunc: function(ship, encounterManager) {
         ship.stamina -= 1;
-        encounterManager.remove(Pirates);
       }
     },
   ]
 };
 
-var p3 = {
-  flavorText: 'Friendly pirates!',
+var p2 = {
+  flavorText: 'Friendly pirates',
   frame: 1,
   outcomes: [
     {
@@ -78,16 +61,40 @@ var p3 = {
   ]
 };
 
+var p3 = {
+  flavorText: 'Injured Pirates ask for help',
+  frame: 2,
+  outcomes: [
+    {
+      flavorText: 'Sink their ship',
+      mechanicsText: '-1 stamina, remove 1 pirate',
+      effectFunc: function(ship, encounterManager) {
+        ship.stamina -= 1;
+        encounterManager.remove(Pirates);
+      }
+    },
+    {
+      flavorText: 'Sell them aid',
+      mechanicsText: '-2 stamina, +1 gold, add 1 pirate',
+      effectFunc: function(ship, encounterManager) {
+        ship.stamina -= 2;
+        ship.gold += 1;
+        encounterManager.add(Pirates);
+      }
+    },
+  ]
+};
+
 var p4 = {
   flavorText: 'You meet the King of Pirates...',
   frame: 10,
   outcomes: [
     {
       flavorText: 'Offer tribute',
-      mechanicsText: '-1 gold, remove 1 pirate',
+      mechanicsText: '-1 gold, remove 2 pirates',
       effectFunc: function(ship, encounterManager) {
         ship.treasure -= 1;
-        encounterManager.remove(Pirates);
+        encounterManager.remove(Pirates, 2);
       }
     },
     {

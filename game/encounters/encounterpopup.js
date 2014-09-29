@@ -47,15 +47,15 @@ var showEncounterPopup = function(game, encounter, result, play) {
     background.anchor.setTo(0.5, 0.5);
 	fullScreenBg.addChild(background);	
 
-    var flavorText = game.add.text(320, 120, encounter.titleText,
+    var flavorText = game.add.text(320, 90, encounter.titleText,
         { font: '60px IM Fell English SC', fill: '#ffffff', align: 'center'});
     flavorText.anchor.setTo(0.5, 0);
     flavorText.wordWrapWidth = popupWidth - 40;
     flavorText.wordWrap = true;
     fullScreenBg.addChild(flavorText);
 
-    var flavorText = game.add.text(320, 190, result.flavorText,
-    	{ font: '36px IM Fell English SC', fill: '#ffffff', align: 'center'});
+    var flavorText = game.add.text(320, 150, result.flavorText,
+    	{ font: '32px IM Fell English SC', fill: '#ffffff', align: 'center'});
     flavorText.anchor.setTo(0.5, 0);
     flavorText.wordWrapWidth = popupWidth - 40;
     flavorText.wordWrap = true;
@@ -66,8 +66,8 @@ var showEncounterPopup = function(game, encounter, result, play) {
 
         var descriptionTexts = {};
 
-        descriptionTexts.a = game.add.text(320, 380+i*80, outcome.flavorText,
-        { font: '36px IM Fell English SC', fill: '#ffffff', align: 'center'});
+        descriptionTexts.a = game.add.text(320, 370+i*80, outcome.flavorText,
+        { font: '32px IM Fell English SC', fill: '#ffffff', align: 'center'});
         descriptionTexts.a.anchor.setTo(0.5, 0);
         descriptionTexts.a.wordWrapWidth = popupWidth - 40;
         descriptionTexts.a.wordWrap = true;
@@ -79,7 +79,7 @@ var showEncounterPopup = function(game, encounter, result, play) {
 
         fullScreenBg.addChild(descriptionTexts.a);
 
-        descriptionTexts.b = game.add.text(320, 416+i*80, '(' + outcome.mechanicsText + ')',
+        descriptionTexts.b = game.add.text(320, 406+i*80, '(' + outcome.mechanicsText + ')',
         { font: '24px IM Fell English SC', fill: '#ffffff', align: 'center'});
         descriptionTexts.b.anchor.setTo(0.5, 0);
         descriptionTexts.b.wordWrapWidth = popupWidth - 40;
@@ -112,7 +112,7 @@ var showEncounterPopup = function(game, encounter, result, play) {
     
 
     // the image
-    var image = game.add.sprite(320, 320, "icons");
+    var image = game.add.sprite(320, 280, "icons");
     image.scale.setTo(0.8, 0.8);
     image.anchor.setTo(0.5, 0.5);
     image.frame = result.frame;

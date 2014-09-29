@@ -66,11 +66,11 @@ function Sidepanel(play){
 	this.encounterText[1] = this.game.add.text(625, 150, "treasure", encounterstyle2);
 	this.encounterText[2] = this.game.add.text(625, 170, "royal navy", encounterstyle2);
 
-	this.encounterText[3] = this.game.add.text(775, 130, "7", encounterstyle2);
+	this.encounterText[3] = this.game.add.text(775, 130, "6", encounterstyle2);
 	this.encounterText[3].anchor.setTo(1.0, 0);
-	this.encounterText[4] = this.game.add.text(775, 150, "10", encounterstyle2);
+	this.encounterText[4] = this.game.add.text(775, 150, "8", encounterstyle2);
 	this.encounterText[4].anchor.setTo(1.0, 0);
-	this.encounterText[5] = this.game.add.text(775, 170, "3", encounterstyle2);
+	this.encounterText[5] = this.game.add.text(775, 170, "4", encounterstyle2);
 	this.encounterText[5].anchor.setTo(1.0, 0);
 
 	this.compass.phSprite.bringToTop();

@@ -1,6 +1,7 @@
 
 'use strict';
 var Encounter = require('./encounter');
+var Pirates = require('./pirates');
 
 var treasureResults = new Array(9);
 
@@ -16,11 +17,19 @@ function Treasure() {
 }
 
 var t1 = {
-  flavorText: 'False Lead!',
-  frame: 5,
+  flavorText: 'Found a shipwreck',
+  frame: 9,
   outcomes: [
     {
-      flavorText: 'Arr',
+      flavorText: 'Dive for their treasure maps',
+      mechanicsText: '-1 stamina, add 1 treasure',
+      effectFunc: function(ship, encounterManager) {
+        ship.stamina -= 1;
+        encounterManager.add(Treasure);
+      }
+    },
+    {
+      flavorText: 'Leave it',
       mechanicsText: 'nothing',
       effectFunc: function(ship, encounterManager) {
         // Do nothing
@@ -30,15 +39,22 @@ var t1 = {
 };
 
 var t2 = {
-  flavorText: 'Booty!',
+  flavorText: 'Buried treasure',
   frame: 3,
   outcomes: [
     {
-      flavorText: 'Drink a grog!',
-      mechanicsText: '+1 gold, remove 1 treasure',
+      flavorText: 'Dig it up!',
+      mechanicsText: '-1 stamina, +1 gold, remove 1 treasure',
       effectFunc: function(ship, encounterManager) {
         ship.treasure += 1;
         encounterManager.remove(Treasure);
+      }
+    },
+    {
+      flavorText: 'Leave it be',
+      mechanicsText: 'nothing',
+      effectFunc: function(ship, encounterManager) {
+        // Do nothing
       }
     },
   ]
@@ -57,18 +73,19 @@ var t3 = {
     },
     {
       flavorText: 'Sell it',
-      mechanicsText: '+1 gold, remove 1 treasure',
+      mechanicsText: '+1 gold, remove 1 treasure, add 1 pirate',
       effectFunc: function(ship, encounterManager) {
         ship.treasure += 1;
         encounterManager.remove(Treasure);
+        encounterManager.add(Pirates);
       }
     },
   ]
 };
 
 var t4 = {
-  flavorText: 'Treasure was destroyed in a skirmish...',
-  frame: 9,
+  flavorText: 'False lead...',
+  frame: 5,
   outcomes: [
     {
       flavorText: 'Arr',

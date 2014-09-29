@@ -50,9 +50,9 @@ Play.prototype = {
     // Initialize encounters
     this.encounterManager = new EncounterManager([this.startTime]);
 
-    this.encounterManager.add(encounters.Pirates, 7);
-    this.encounterManager.add(encounters.RoyalNavy, 3);
-    this.encounterManager.add(encounters.Treasure, 10);
+    this.encounterManager.add(encounters.Pirates, 6);
+    this.encounterManager.add(encounters.RoyalNavy, 4); 
+    this.encounterManager.add(encounters.Treasure, 8);
 
     // Order is important: grid then ship then side panel
     this.grid = new Grid(this);

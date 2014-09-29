@@ -44,15 +44,14 @@ var r2 = {
 };
 
 var r3 = {
-  flavorText: 'Resounding victory, you beat the navy!',
-  frame: 8,
+  flavorText: 'Defeated!',
+  frame: 6,
   outcomes: [
     {
-      flavorText: 'Claim your spoils',
-      mechanicsText: '+2 stamina, +1 gold',
+      flavorText: 'Limp away',
+      mechanicsText: '-2 stamina',
       effectFunc: function(ship, encounterManager) {
-        ship.stamina += 2;
-        ship.treasure += 1;
+        ship.stamina -= 2;
       }
     },
   ]
@@ -63,11 +62,19 @@ var r4 = {
   frame: 8,
   outcomes: [
     {
-      flavorText: 'Claim your spoils',
-      mechanicsText: '+2 stamina, +1 gold',
+      flavorText: 'Claim your spoils, but make the news',
+      mechanicsText: '-2 stamina, +1 gold, add 1 royal navy',
       effectFunc: function(ship, encounterManager) {
-        ship.stamina += 2;
+        ship.stamina -= 2;
         ship.treasure += 1;
+        encounterManager.add(RoyalNavy);
+      }
+    },
+    {
+      flavorText: 'Slink away',
+      mechanicsText: '-1 stamina',
+      effectFunc: function(ship, encounterManager) {
+        ship.stamina -= 1;
       }
     },
   ]
