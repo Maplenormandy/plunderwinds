@@ -54,23 +54,23 @@ function Sidepanel(play){
 	/**
 	  places encounters remaining
 	*/
-	var encounterwords = "deck";
-	var encounterstyle = {font: "25px IM Fell English SC", fill: '#000000', align: "center"};
+	var encounterwords = "remaining encounters";
+	var encounterstyle = {font: "20px IM Fell English SC", fill: '#000000', align: "center"};
 	this.encounterText2 = this.game.add.text(700, 100, encounterwords, encounterstyle);
 	this.encounterText2.anchor.setTo(0.5, 0);
 
 	var encounterstyle2 = {font: "20px IM Fell English SC", fill: '#000000', align: "left"};
 	var encounterstyle3 = {font: "20px IM Fell English SC", fill: '#000000', align: "right"};
 	this.encounterText = [0, 0, 0, 0, 0, 0];
-	this.encounterText[0] = this.game.add.text(625, 130, "pirates", encounterstyle2);
-	this.encounterText[1] = this.game.add.text(625, 150, "treasure", encounterstyle2);
-	this.encounterText[2] = this.game.add.text(625, 170, "royal navy", encounterstyle2);
+	this.encounterText[0] = this.game.add.text(625, 120, "pirates", encounterstyle2);
+	this.encounterText[1] = this.game.add.text(625, 140, "treasure", encounterstyle2);
+	this.encounterText[2] = this.game.add.text(625, 160, "royal navy", encounterstyle2);
 
-	this.encounterText[3] = this.game.add.text(775, 130, "6", encounterstyle2);
+	this.encounterText[3] = this.game.add.text(775, 120, "6", encounterstyle2);
 	this.encounterText[3].anchor.setTo(1.0, 0);
-	this.encounterText[4] = this.game.add.text(775, 150, "8", encounterstyle2);
+	this.encounterText[4] = this.game.add.text(775, 140, "8", encounterstyle2);
 	this.encounterText[4].anchor.setTo(1.0, 0);
-	this.encounterText[5] = this.game.add.text(775, 170, "4", encounterstyle2);
+	this.encounterText[5] = this.game.add.text(775, 160, "4", encounterstyle2);
 	this.encounterText[5].anchor.setTo(1.0, 0);
 
 	this.compass.phSprite.bringToTop();
@@ -82,6 +82,10 @@ function Sidepanel(play){
 	var spyglassstyle = {font: "25px IM Fell English SC", fill: '#000000', align: "center"};
 	this.spyglassText = this.game.add.text(700, 220, "spyglass", spyglassstyle);
 	this.spyglassText.anchor.setTo(0.5, 0);
+
+	this.spyTile = this.game.add.sprite(700, 210, 'tiles');
+  this.spyTile.scale.setTo(0.15, 0.15);
+  this.spyTile.anchor.setTo(0.5, 0.5);
 
 	var spydescripttext = "Hover over a tile to see more details!";
 	var spydescriptstyle = {font: "16px IM Fell English SC", fill: '#000000', align: "center",

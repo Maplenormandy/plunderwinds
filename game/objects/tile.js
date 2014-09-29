@@ -66,25 +66,33 @@ Tile.prototype.onClick = function() {
 
 Tile.prototype.onOver = function() {
   var newText = ""
+  var frame = 0;
   var gridPos = this.grid.getTileCoords(this.phSprite.x, this.phSprite.y); 
   if (this.playerTouched == true) {
     newText = "The Royal Navy knows you have been here, so you can not return.";
+    frame = 7;
   } else if (gridPos.x == 5 && gridPos.y == 5) {
     newText = "Your home base, you have return here at the end.";
+    frame = 8;
   } else if (this.revealed == false) {
     newText = "Your scouts can not see that far ahead, get closer to reveal the tile.";
   } else if (this.danger < 3) {
     newText = "Red tiles are the most dangerous. You will face battles that drain " +
       "stamina but let you control what remains in the deck.";
+      frame = 1;
   } else if (this.danger < 6) { 
     newText = "Blue tiles are neutral. You can rest and regain stamina here.";
+    frame = 5;
   } else if (this.danger < 8) {
     newText = "Green tiles have the best rewards. Treasure abounds here, but your actions " +
       "will attract the attention of pirates and the royal navy, adding them to the deck!";
+    frame = 4;
   } else {
     newText = "Purple tiles are a gamble.";
+    frame = 6;
   }
   this.play.sidePanel.spyDescriptionText.text = newText;
+  this.play.sidePanel.spyTile.frame = frame;
 };
 
 Tile.prototype.mark = function() {
