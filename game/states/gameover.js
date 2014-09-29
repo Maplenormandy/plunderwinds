@@ -2,6 +2,7 @@
 'use strict';
 
 var Bonus = require('../objects/bonus');
+var jQuery = require('../lib/jquery-1.11.1.min.js');
 
 /**
  * The GameOver state shows the final score and offers the player a chance to play again.
@@ -34,7 +35,6 @@ GameOver.prototype = {
     this.titleText = this.game.add.text(this.game.world.centerX,100, 'Game Over!', style);
     this.titleText.anchor.setTo(0.5, 0.5);
 
-
     //this.game.stage.backgroundColor = '#000';
 
     var winString = '';
@@ -47,6 +47,24 @@ GameOver.prototype = {
         this.score = bonus.scoreModifier(this.score);
       }
     }
+
+    var scoreForClosure = this.score;
+    // Now that we've computed the final score, pull the real high-score list, for comparison.
+    jQuery.ajax({
+      url: 'http://snp.scripts.mit.edu/get_scores_plunderwinds.py',
+      success: function(data) {
+        var lowest_highscore = data[2][1];
+		alert("Lowest: " + lowest_highscore + " Your score: " + scoreForClosure);
+        // Check if we have a winning highscore.
+        if (scoreForClosure > lowest_highscore) {
+          var name = prompt('You got ' + scoreForClosure + ' gold, which made the highscore table! What is your captain\'s name?');
+          jQuery.ajax({
+            url: 'http://snp.scripts.mit.edu/highscore_plunderwinds.py',
+            data: {'name': name, 'score': scoreForClosure}
+          });
+        }
+      }
+    });
 
     this.congratsText = this.game.add.text(this.game.world.centerX, 200, winString, { font: '32px IM Fell English SC', fill: '#ffffff', align: 'center'});
     this.congratsText.anchor.setTo(0.5, 0.5);
