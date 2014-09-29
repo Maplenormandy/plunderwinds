@@ -28,15 +28,15 @@ function Grid(play) {
 	// this.ship gets assigned by the ship constructor
 	this.ship = null;
 
-  this.game.input.keyboard.addKeyCapture([Phaser.Keyboard.UP,
-                                         Phaser.Keyboard.DOWN,
-                                         Phaser.Keyboard.LEFT,
-                                         Phaser.Keyboard.RIGHT]);
+  //this.game.input.keyboard.addKeyCapture([Phaser.Keyboard.UP,
+  //                                       Phaser.Keyboard.DOWN,
+  //                                       Phaser.Keyboard.LEFT,
+  //                                       Phaser.Keyboard.RIGHT]);
 
-  var me = this;
-  this.game.input.keyboard.onDownCallback = function (e) {
-    me.handleInput(e);
-  }
+  //var me = this;
+  //this.game.input.keyboard.onDownCallback = function (e) {
+  //  me.handleInput(e);
+  //}
 }
 
 /**
