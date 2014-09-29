@@ -58,8 +58,10 @@ Compass.prototype.setupClouds = function() {
 Compass.prototype.updateClouds = function() {
   var e;
 
-  this.windV[0] += (this.targetWindV[0] - this.windV[0]) * 0.015;
-  this.windV[1] += (this.targetWindV[1] - this.windV[1]) * 0.015;
+  var windDirChangeRate = 0.02;
+
+  this.windV[0] += (this.targetWindV[0] - this.windV[0]) * windDirChangeRate;
+  this.windV[1] += (this.targetWindV[1] - this.windV[1]) * windDirChangeRate;
 
   for (var a = 0; a < this.clouds.length; a++) {
     e = this.clouds[a];

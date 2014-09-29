@@ -117,6 +117,24 @@ Ship.prototype.moveTo = function(dir, anim, successCb, failCb) {
       staminaCost = 0;
     } else if (Math.abs(this.play.wind/2 - dir) == 2) {
       this.stamina -= staminaCost;
+
+      // animate the failure
+      // should be refactored, no time
+      var currentPos = this.absPos();
+
+      this.gridX += step[0] * 0.5;
+      this.gridY += step[1] * 0.5;
+
+      var targetPos = this.absPos();
+
+      this.gridX -= step[0] * 0.5;
+      this.gridY -= step[1] * 0.5;
+
+      this.game.add.tween(this.phSprite)
+      .to({x: targetPos[0], y: targetPos[1]}, 750, Phaser.Easing.Cubic.Out)
+      .to({x: currentPos[0], y: currentPos[1]}, 750, Phaser.Easing.Cubic.In)
+      .start();
+
       failCb();
       return;
     }
@@ -129,7 +147,7 @@ Ship.prototype.moveTo = function(dir, anim, successCb, failCb) {
     var absPos = this.absPos();
 
     var move = this.game.add.tween(this.phSprite);
-    move.to({x: absPos[0], y: absPos[1]}, 500, Phaser.Easing.Cubic.Out);
+    move.to({x: absPos[0], y: absPos[1]}, 1000, Phaser.Easing.Cubic.Out);
     if (typeof successCb !== 'undefined') {
       move.onComplete.add(successCb);
     }
