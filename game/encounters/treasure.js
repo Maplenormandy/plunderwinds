@@ -39,29 +39,22 @@ var t1 = {
 };
 
 var t2 = {
-  flavorText: 'Buried treasure',
+  flavorText: 'Buried Treasure!',
   frame: 3,
   outcomes: [
     {
-      flavorText: 'Dig it up!',
-      mechanicsText: '-1 stamina, +1 gold, remove 1 treasure',
+      flavorText: 'Dig it up',
+      mechanicsText: '+1 gold, remove 1 treasure',
       effectFunc: function(ship, encounterManager) {
         ship.treasure += 1;
         encounterManager.remove(Treasure);
-      }
-    },
-    {
-      flavorText: 'Leave it be',
-      mechanicsText: 'nothing',
-      effectFunc: function(ship, encounterManager) {
-        // Do nothing
       }
     },
   ]
 };
 
 var t3 = {
-  flavorText: 'Ancient Treasure!',
+  flavorText: 'Lost Ancient Treasure!',
   frame: 4,
   outcomes: [
     {
@@ -73,7 +66,7 @@ var t3 = {
     },
     {
       flavorText: 'Sell it',
-      mechanicsText: '+1 gold, remove 1 treasure, add 1 pirate',
+      mechanicsText: '+1 gold, add 1 pirate',
       effectFunc: function(ship, encounterManager) {
         ship.treasure += 1;
         encounterManager.remove(Treasure);

@@ -1,6 +1,7 @@
 
 'use strict';
 var Encounter = require('./encounter');
+var Pirates = require('./pirates');
 
 var navyResults = new Array(9);
 
@@ -30,6 +31,27 @@ var r1 = {
 };
 
 var r2 = {
+  flavorText: 'Fleet spotted in the distance!',
+  frame: 6,
+  outcomes: [
+    {
+      flavorText: 'Create a distraction!',
+      mechanicsText: 'add 1 pirate',
+      effectFunc: function(ship, encounterManager) {
+        encounterManager.add(Pirates);
+      }
+    },
+    {
+      flavorText: 'Flee!',
+      mechanicsText: '-1 stamina',
+      effectFunc: function(ship, encounterManager) {
+        ship.stamina -= 1;
+      }
+    }
+  ]
+};
+
+var r3 = {
   flavorText: 'They didn\'t see you!',
   frame: 7,
   outcomes: [
@@ -38,20 +60,6 @@ var r2 = {
       mechanicsText: 'nothing',
       effectFunc: function(ship, encounterManager) {
         // do nothing
-      }
-    },
-  ]
-};
-
-var r3 = {
-  flavorText: 'Defeated!',
-  frame: 6,
-  outcomes: [
-    {
-      flavorText: 'Limp away',
-      mechanicsText: '-2 stamina',
-      effectFunc: function(ship, encounterManager) {
-        ship.stamina -= 2;
       }
     },
   ]

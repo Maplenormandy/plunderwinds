@@ -75,11 +75,10 @@ var p3 = {
     },
     {
       flavorText: 'Sell them aid',
-      mechanicsText: '-2 stamina, +1 gold, add 1 pirate',
+      mechanicsText: '+1 gold, add 2 pirates',
       effectFunc: function(ship, encounterManager) {
-        ship.stamina -= 2;
         ship.gold += 1;
-        encounterManager.add(Pirates);
+        encounterManager.add(Pirates, 2);
       }
     },
   ]
@@ -90,7 +89,7 @@ var p4 = {
   frame: 10,
   outcomes: [
     {
-      flavorText: 'Offer tribute',
+      flavorText: 'Pay tribute',
       mechanicsText: '-1 gold, remove 2 pirates',
       effectFunc: function(ship, encounterManager) {
         ship.treasure -= 1;
