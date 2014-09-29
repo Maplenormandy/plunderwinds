@@ -118,7 +118,7 @@ GameOver.prototype = {
 			return 'All four corners of the map explored! +2 gold';
       }, function (score) { return score + 2; }),
     new Bonus(function (go) {
-        if (go.endState.ship.gridX != 5 && go.endState.ship.gridY != 5)
+        if (go.endState.ship.gridX != 5 || go.endState.ship.gridY != 5)
           return 'Unfortunately, you ended at sea,\nand what good is treasure if you\'re not at home?';
       }, function (score) { return 0; }),
     new Bonus(function (go) {
