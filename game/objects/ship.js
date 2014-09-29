@@ -131,12 +131,14 @@ Ship.prototype.moveTo = function(dir, anim, successCb, failCb) {
       this.gridX -= step[0] * 0.5;
       this.gridY -= step[1] * 0.5;
 
-      this.game.add.tween(this.phSprite)
+      var move = this.game.add.tween(this.phSprite)
       .to({x: targetPos[0], y: targetPos[1]}, 750, Phaser.Easing.Cubic.Out)
-      .to({x: currentPos[0], y: currentPos[1]}, 750, Phaser.Easing.Cubic.In)
-      .start();
+      .to({x: currentPos[0], y: currentPos[1]}, 750, Phaser.Easing.Cubic.In);
+      
+      move._lastChild.onComplete.add(failCb);
 
-      failCb();
+      move.start();
+
       return;
     }
 
