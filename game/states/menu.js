@@ -57,9 +57,12 @@ Good luck.\n\nClick to continue."
     this.game.add.tween(this.sprite).to({angle: 20}, 1000,
                                         Phaser.Easing.Linear.NONE, 
                                         true, 0, 1000, true);
+    this.wasPointerUp = true;
   },
   update: function() {
-    if(this.game.input.activePointer.justPressed()) {
+    this.wasPointerUp = !this.isPointerDown;
+    this.isPointerDown = this.game.input.activePointer.isDown;
+    if(this.isPointerDown && this.wasPointerUp) {
       this.ins_idx += 1;
 
       if (this.ins_idx < this.instructions.length) {
