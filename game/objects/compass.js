@@ -68,6 +68,9 @@ Compass.prototype.updateClouds = function() {
 
     if (e.x > 620) { e.x = (e.x - 20) % 600 - 20; }
     if (e.y > 620) { e.y = (e.y - 20) % 600 - 20; }
+
+    if (e.x < -20) { e.x = (e.x + 20) % 600 + 620; }
+    if (e.y < -20) { e.y = (e.y + 20) % 600 + 620; }
   }
 };
 
