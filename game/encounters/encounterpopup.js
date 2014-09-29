@@ -45,7 +45,7 @@ var showEncounterPopup = function(game, encounter, result, play) {
 	var background = game.add.sprite(320, 300, 'encounter-background');
     background.scale.setTo(0.72, 0.86);
     background.anchor.setTo(0.5, 0.5);
-	fullScreenBg.addChild(background);	
+	fullScreenBg.addChild(background);
 
     var flavorText = game.add.text(320, 90, encounter.titleText,
         { font: '60px IM Fell English SC', fill: '#ffffff', align: 'center'});

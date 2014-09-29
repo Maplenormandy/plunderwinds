@@ -78,17 +78,17 @@ Tile.prototype.onOver = function() {
     newText = "Your scouts can not see that far ahead, get closer to reveal the tile.";
   } else if (this.danger < 3) {
     newText = "Red tiles are the most dangerous. You will face battles that drain " +
-      "stamina but let you control what remains in the deck.";
+      "stamina but let you control what encounters remain.";
       frame = 1;
   } else if (this.danger < 6) { 
-    newText = "Blue tiles are neutral. You can rest and regain stamina here.";
+    newText = "Blue tiles are neutral. You can find treasures here.";
     frame = 5;
   } else if (this.danger < 8) {
-    newText = "Green tiles have the best rewards. Treasure abounds here, but your actions " +
-      "will attract the attention of pirates and the royal navy, adding them to the deck!";
+    newText = "Green tiles are safe, but your actions will attract "
+      + "more pirate encounters!";
     frame = 4;
   } else {
-    newText = "Purple tiles are a gamble.";
+    newText = "Purple tiles are a gamble, high risk and high reward.";
     frame = 6;
   }
   this.play.sidePanel.spyDescriptionText.text = newText;

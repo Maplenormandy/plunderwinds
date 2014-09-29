@@ -17,7 +17,7 @@ function RoyalNavy() {
 }
 
 var r1 = {
-  flavorText: 'Defeated!',
+  flavorText: 'Defeated you!',
   frame: 6,
   outcomes: [
     {

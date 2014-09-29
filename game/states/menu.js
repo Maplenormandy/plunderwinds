@@ -9,28 +9,23 @@ function Menu() {}
 
 Menu.prototype = {
   instructions: [
-"The winds of change are blowing, and the high seas are ripe with dubloons! In\n\
-Plunder Winds, you must lead your crew through troubled waters, hunting for\n\
-booty and avoiding hazards like hostile pirates and the Royal Navy. Reach safe\n\
-harbor, and your journey ends in triumph: you and your crew split your reward.\n\
-Run out of stamina, and your story ends adrift in the ocean, as you pray for the\n\
-mercy of a passing merchant or surrender to death's sweet relief in the bosom of\n\
+"The winds of change are blowing, and the high seas are ripe with dubloons! In \
+Plunder Winds, you must lead your crew through troubled waters, hunting for \
+booty and avoiding hazards like hostile pirates and the Royal Navy. Reach safe \
+harbor, and your journey ends in triumph: you and your crew split your reward. \
+Run out of stamina, and your story ends adrift in the ocean, as you pray for the \
+mercy of a passing merchant or surrender to death's sweet relief in the bosom of \
 the sea.\n\nClick to continue.",
 
-"Move to a tile directly adjacent to you (up/down/left/right) by clicking on it,\n\
-or using the arrow keys to navigate. You may travel with the wind for free, or\n\
-use stamina to fight through cross winds. But beware: sailing directly against\n\
-the wind is impossible, and will cost you stamina without getting you anywhere.\n\
-The royal navy is in hot pursuit, so you may not cross your own path.\n\n\
-Click to continue.",
-
-"Each section of ocean is marked with a color indicating its risk level. For\n\
-example, green waters are friendly, and have a greater chance of reward; waters\n\
-marked red are more treacherous. Your goal is a friendly port on the edge of\n\
-the map. When you reach it, the game ends, and your score is calculated\n\
-based on how much loot you have collected.\n\
+"Move to a tile directly adjacent to you by clicking on it.\n\
+Travel with the wind for free, or use stamina to fight through cross winds.\n\
+Sailing directly against the wind is impossible, and will cost you stamina.\n\
+Beware, the wind changes after you chose your direction of movement!\n\
+Each tile has a different risk level, hover over it to learn more.\n\
+The number of encounters left in the sea is shown on the side.\n\
 Good luck.\n\nClick to continue."
   ],
+
   preload: function() {
     
   },
@@ -50,7 +45,9 @@ Good luck.\n\nClick to continue."
                                                this.instructions[this.ins_idx], 
                                                { font: '18px IM Fell English SC',
                                                  fill: '#ffffff', 
-                                                 align: 'center' });
+                                                 align: 'center',
+                                                 wordWrap: true,
+                                                 wordWrapWidth: 600 });
     this.instructionsText.anchor.setTo(0.5, 0.5);
 
     this.sprite.angle = -20;

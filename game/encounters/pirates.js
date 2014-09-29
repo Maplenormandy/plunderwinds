@@ -67,18 +67,17 @@ var p3 = {
   outcomes: [
     {
       flavorText: 'Sink their ship',
-      mechanicsText: '-1 stamina, remove 1 pirate',
+      mechanicsText: 'remove 1 pirate',
       effectFunc: function(ship, encounterManager) {
-        ship.stamina -= 1;
         encounterManager.remove(Pirates);
       }
     },
     {
-      flavorText: 'Sell them aid',
-      mechanicsText: '+1 gold, add 2 pirates',
+      flavorText: 'Help them in exchange for supplies',
+      mechanicsText: '+2 stamina, add 1 pirate',
       effectFunc: function(ship, encounterManager) {
-        ship.gold += 1;
-        encounterManager.add(Pirates, 2);
+        ship.stamina += 2;
+        encounterManager.add(Pirates);
       }
     },
   ]
